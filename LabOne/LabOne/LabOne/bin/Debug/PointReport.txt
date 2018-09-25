@@ -1,0 +1,38 @@
+Leaving Cert Report
+-----------------------------------
+Subject Name: Maths
+Subject Level: H
+Subject Grade: H6
+Subject Points: 46
+
+Subject Name: English
+Subject Level: O
+Subject Grade: O6
+Subject Points: 12
+
+Subject Name: Work
+Subject Level: H
+Subject Grade: H1
+Subject Points: 100
+
+Subject Name: Mat
+Subject Level: H
+Subject Grade: H2
+Subject Points: 88
+
+Subject Name: tree
+Subject Level: O
+Subject Grade: O2
+Subject Points: 46
+
+Subject Name: three
+Subject Level: H
+Subject Grade: H3
+Subject Points: 77
+
+Subject Name: bats
+Subject Level: H
+Subject Grade: H8
+Subject Points: 0
+
+Total Points:369

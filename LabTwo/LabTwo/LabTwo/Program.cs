@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace LabTwo
     {
         static void Main(string[] args)
         {
-            QuestionFive();
+            QuestionSix();
 
             Console.ReadKey();
         }
@@ -161,7 +162,60 @@ namespace LabTwo
         //Question Six
         static void QuestionSix()
         {
+            //Variables
+            string lineReadIn = "";
+            string[] data = new string[2];
+            string message;
 
+            const string FORMAT = "{0,-0}{1,25}{2,30}";
+            const string FORMAT_TITLE = "{0,-0}{1,15}";
+
+            int Sales = 0;
+            int totalSales = 0;
+            int counter = 0;
+
+            //File Read
+            FileStream fs = new FileStream(@"sales.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            Console.WriteLine("Sales Report");
+            Console.WriteLine(FORMAT_TITLE,"Store ID Sales","Performance");
+
+            lineReadIn = sr.ReadLine();
+
+            do
+            {
+                data = lineReadIn.Split(',');
+                Sales = int.Parse(data[1]);
+
+                if (Sales < 1000)
+                {
+                    message = "Needs attention";
+                }
+                else if (Sales < 2000 && Sales >= 1000)
+                {
+                    message = "Moderate";
+                }
+                else if(Sales > 2000)
+                {
+                    message = "Very good";
+                }
+                else
+                {
+                    message = "Error";
+                }
+
+                totalSales += Sales;
+                counter++;
+                Console.WriteLine(FORMAT,data[0],data[1],message);
+
+                lineReadIn = sr.ReadLine();
+            }
+            while (lineReadIn != null);
+
+            Console.WriteLine("Total Sales: " + totalSales);
+            Console.WriteLine("Average Sales: " + (totalSales/counter) );
+            
         }
     }
 }

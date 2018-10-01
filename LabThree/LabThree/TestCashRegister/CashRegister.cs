@@ -8,12 +8,13 @@ namespace TestCashRegister
 {
     class CashRegister
     {
-        public decimal total;
-        public int quantity;
+        public decimal total = 0;
+        public int quantity = 0;
 
-        public void AddItem(double price)
+        public void AddItem(decimal price)
         {
-
+            total += price;
+            quantity++;
         }
     }
 }

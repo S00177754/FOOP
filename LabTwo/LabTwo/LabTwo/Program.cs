@@ -11,10 +11,55 @@ namespace LabTwo
     {
         static void Main(string[] args)
         {
-            QuestionSix();
+            Menu();
 
             Console.ReadKey();
         }
+
+        #region Menu
+        static void Menu()
+        {
+            Console.WriteLine("Choose an option:");
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine($"{i + 1}.Question {i + 1}");
+            }
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    QuestionOne();
+                    break;
+
+                case 2:
+                    QuestionTwo();
+                    break;
+
+                case 3:
+                    QuestionThree();
+                    break;
+
+                case 4:
+                    QuestionFour();
+                    break;
+
+                case 5:
+                    QuestionFive();
+                    break;
+
+                case 6:
+                    QuestionSix();
+                    break;
+
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
+
+            Console.ReadKey();
+        }
+        #endregion Menu
 
         //Question One
         static void QuestionOne()

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFlight", "LabThree\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCashRegister", "TestCashRegister\TestCashRegister.csproj", "{DCEF6820-08B2-4243-9521-EE956D8D0E25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSquares", "DemoSquares\DemoSquares.csproj", "{C7B48071-3BA1-45CF-BC6B-C6670C28036C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DCEF6820-08B2-4243-9521-EE956D8D0E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCEF6820-08B2-4243-9521-EE956D8D0E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCEF6820-08B2-4243-9521-EE956D8D0E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B48071-3BA1-45CF-BC6B-C6670C28036C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B48071-3BA1-45CF-BC6B-C6670C28036C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B48071-3BA1-45CF-BC6B-C6670C28036C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B48071-3BA1-45CF-BC6B-C6670C28036C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

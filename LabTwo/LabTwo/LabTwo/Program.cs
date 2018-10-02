@@ -20,9 +20,9 @@ namespace LabTwo
         static void Menu()
         {
             Console.WriteLine("Choose an option:");
-            for (int i = 0; i < 7; i++)
+            for (int i = 1; i < 7; i++)
             {
-                Console.WriteLine($"{i + 1}.Question {i + 1}");
+                Console.WriteLine($"{i }.Question {i }");
             }
             int choice = int.Parse(Console.ReadLine());
 
@@ -212,8 +212,8 @@ namespace LabTwo
             string[] data = new string[2];
             string message;
 
-            const string FORMAT = "{0,-0}{1,25}{2,30}";
-            const string FORMAT_TITLE = "{0,-0}{1,15}";
+            const string FORMAT = "{0,10}{1,20}{2,30}";
+            //const string FORMAT_TITLE = "{0,-0}{1,15}";
 
             int Sales = 0;
             int totalSales = 0;
@@ -224,7 +224,7 @@ namespace LabTwo
             StreamReader sr = new StreamReader(fs);
 
             Console.WriteLine("Sales Report");
-            Console.WriteLine(FORMAT_TITLE,"Store ID Sales","Performance");
+            Console.WriteLine(FORMAT,"Store ID", "Sales","Performance");
 
             lineReadIn = sr.ReadLine();
 

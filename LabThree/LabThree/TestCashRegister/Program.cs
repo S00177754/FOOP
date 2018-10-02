@@ -10,27 +10,52 @@ namespace TestCashRegister
     {
         static void Main(string[] args)
         {
+            //Variables
+            int cashRegisterChoice = 1;
+            decimal priceInput = 0;
+
             CashRegister CR1 = new CashRegister();
             CashRegister CR2 = new CashRegister();
 
-            CR1.AddItem(2.70m,"Cash Register 1");
-            CR1.AddItem(6.20m, "Cash Register 1");
-            CR1.AddItem(12.90m, "Cash Register 1");
-            CR1.AddItem(1.45m, "Cash Register 1");
+            //Process
+            while (cashRegisterChoice == 1 || cashRegisterChoice == 2)
+            {
+                Console.WriteLine("Exit by entering a value other than 1 or 2.");
+                Console.Write("Please choose a cash register: ");
+                cashRegisterChoice = int.Parse(Console.ReadLine());
+
+                if(cashRegisterChoice == 1 || cashRegisterChoice == 2)
+                {
+                    Console.Write("Please enter amount: ");
+                    priceInput = decimal.Parse(Console.ReadLine());
+
+                }
+
+                switch (cashRegisterChoice)
+                {
+                    case 1:
+                        CR1.AddItem(priceInput);
+                        break;
+
+                    case 2:
+                        CR2.AddItem(priceInput);
+                        break;
+
+                    default:
+                        break;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Cash Register 1:");
+            Console.WriteLine($"Total: {CR1.Total}  Number of Items:{CR1.Quantity}");
 
             Console.WriteLine();
 
-            CR2.AddItem(22.74m, "Cash Register 2");
-            CR2.AddItem(4.56m, "Cash Register 2");
-            CR2.AddItem(2.10m, "Cash Register 2");
-            CR2.AddItem(7.72m, "Cash Register 2");
-
-            Console.WriteLine();
-
-            CR1.Display("CR1");
-            CR2.Display("CR2");
+            Console.WriteLine("Cash Register 1:");
+            Console.WriteLine($"Total: {CR2.Total}  Number of Items:{CR2.Quantity}");
 
             Console.ReadKey();
+
         }
     }
 }

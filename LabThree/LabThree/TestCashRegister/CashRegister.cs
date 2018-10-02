@@ -8,24 +8,37 @@ namespace TestCashRegister
 {
     class CashRegister
     {
-        private readonly decimal total = 0;
-        private readonly int quantity = 0;
+        private decimal total;
+        public decimal Total
+        {
+            get
+            {
+                return this.total;
+            }
+        }
 
-        public CashRegister(decimal price,string name)
+        private int quantity = 0;
+        public decimal Quantity
+        {
+            get
+            {
+                return this.quantity;
+            }
+        }
+
+        public void AddItem(decimal price)
         {
             total += price;
             quantity++;
-            Console.WriteLine($"Adding an item worth {price} to {name}");
+
+            Console.WriteLine($"Adding an item worth {price}.");
         }
 
-        public void Display(string name)
+        public void Display()
         {
-            Console.WriteLine($"Cash Register {name} Total: {total}");
-            Console.WriteLine($"Cash Register {name} Number of Items: {quantity}");
+            Console.WriteLine($"Total: {total}");
+            Console.WriteLine($"Number of Items: {quantity}");
         }
 
-       
-
-        
     }
 }

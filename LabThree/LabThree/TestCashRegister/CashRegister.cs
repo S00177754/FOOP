@@ -8,10 +8,10 @@ namespace TestCashRegister
 {
     class CashRegister
     {
-        private decimal total = 0;
-        private int quantity = 0;
+        private readonly decimal total = 0;
+        private readonly int quantity = 0;
 
-        public void AddItem(decimal price,string name)
+        public CashRegister(decimal price,string name)
         {
             total += price;
             quantity++;
@@ -23,5 +23,9 @@ namespace TestCashRegister
             Console.WriteLine($"Cash Register {name} Total: {total}");
             Console.WriteLine($"Cash Register {name} Number of Items: {quantity}");
         }
+
+       
+
+        
     }
 }

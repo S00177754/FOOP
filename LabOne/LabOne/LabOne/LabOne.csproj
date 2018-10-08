@@ -47,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\LabOne.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\LabOne.exe" />
+    <Content Include="bin\Debug\LabOne.pdb" />
+    <Content Include="bin\Debug\LCgrades.txt" />
+    <Content Include="bin\Debug\LCPercentages.txt" />
+    <Content Include="bin\Debug\PointReport.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

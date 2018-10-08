@@ -96,9 +96,9 @@ namespace LabOne
         static void PercentagePoints()
         {
             //Variables
-            string userGrade, message, level; //Grouped String variables together
+            string userGrade, level; //Grouped String variables together
             bool exit;
-            int grade;
+            int grade, points = 0;
 
             //Input
             do
@@ -107,129 +107,27 @@ namespace LabOne
                 level = Console.ReadLine();
                 level = level.ToUpper();
 
-                if (level == "H" || level == "HIGHER")
+                //Enter Percentage
+                do
                 {
-                    //Enter Percentage
-                    do
-                    {
-                        Console.Write("Please Enter Percentage: ");
-                        userGrade = Console.ReadLine();
+                    Console.Write("Please Enter Percentage: ");
+                    userGrade = Console.ReadLine();
 
-                        if (int.TryParse(userGrade, out grade))
-                        {
-                            grade = int.Parse(userGrade);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error - Cannot Convert To Integer");
-                        }
-                    }
-                    while (!(int.TryParse(userGrade, out grade)));
-
-                    //Process(Takes in grade and gives out points)
-                    if (grade < 30)
+                    if (int.TryParse(userGrade, out grade))
                     {
-                        message = "0";
-                    }
-                    else if (grade >= 30 && grade < 40)
-                    {
-                        message = "37";
-                    }
-                    else if (grade >= 40 && grade < 50)
-                    {
-                        message = "46";
-                    }
-                    else if (grade >= 50 && grade < 60)
-                    {
-                        message = "56";
-                    }
-                    else if (grade >= 60 && grade < 70)
-                    {
-                        message = "66";
-                    }
-                    else if (grade >= 70 && grade < 80)
-                    {
-                        message = "77";
-                    }
-                    else if (grade >= 80 && grade < 90)
-                    {
-                        message = "88";
-                    }
-                    else if (grade >= 90 && grade <= 100)
-                    {
-                        message = "100";
+                        grade = int.Parse(userGrade);
                     }
                     else
                     {
-                        message = "Error";
+                        Console.WriteLine("Error - Cannot Convert To Integer");
                     }
-
                 }
-                else if (level == "O" || level == "ORDINARY")
-                {
-                    do
-                    {
-                        Console.Write("Please Enter Percentage: ");
-                        userGrade = Console.ReadLine();
+                while (!(int.TryParse(userGrade, out grade)));
 
-                        if (int.TryParse(userGrade, out grade))
-                        {
-                            grade = int.Parse(userGrade);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error - Cannot Convert To Integer");
-                        }
-                    }
-                    while (!(int.TryParse(userGrade, out grade)));
-
-                    //Process
-                    if (grade < 30)
-                    {
-                        message = "0";
-                    }
-                    else if (grade >= 30 && grade < 40)
-                    {
-                        message = "0";
-                    }
-                    else if (grade >= 40 && grade < 50)
-                    {
-                        message = "12";
-                    }
-                    else if (grade >= 50 && grade < 60)
-                    {
-                        message = "20";
-                    }
-                    else if (grade >= 60 && grade < 70)
-                    {
-                        message = "28";
-                    }
-                    else if (grade >= 70 && grade < 80)
-                    {
-                        message = "37";
-                    }
-                    else if (grade >= 80 && grade < 90)
-                    {
-                        message = "46";
-                    }
-                    else if (grade >= 90 && grade <= 100)
-                    {
-                        message = "56";
-                    }
-                    else
-                    {
-                        message = "Error";
-                    }
-
-                }
-                else
-                {
-                    message = "Invalid";
-                    Console.WriteLine("Invalid Selection");
-                }
+                points = PercentageToPoints(level, grade);
 
                 exit = false;
-                if (level == "H" || level == "HIGHER" || level == "O" || level == "ORDINARY")
+                if (level[0] == 'H' || level[0] == 'O')
                 {
                     exit = true;
                 }
@@ -237,7 +135,7 @@ namespace LabOne
             while (exit == false);
 
             //Output
-            Console.WriteLine("Points: " + message);
+            Console.WriteLine("Points: " + points);
         }
 
         //Exercise Two
@@ -253,77 +151,7 @@ namespace LabOne
             grade = grade.ToUpper();
 
             //Process
-            switch (grade)
-            {
-                case "H1":
-                    points = 100;
-                    break;
-
-                case "H2":
-                    points = 88;
-                    break;
-
-                case "H3":
-                    points = 77;
-                    break;
-
-                case "H4":
-                    points = 66;
-                    break;
-
-                case "H5":
-                    points = 56;
-                    break;
-
-                case "H6":
-                    points = 46;
-                    break;
-
-                case "H7":
-                    points = 37;
-                    break;
-
-                case "H8":
-                    points = 0;
-                    break;
-
-                case "O1":
-                    points = 56;
-                    break;
-
-                case "O2":
-                    points = 46;
-                    break;
-
-                case "O3":
-                    points = 37;
-                    break;
-
-                case "O4":
-                    points = 28;
-                    break;
-
-                case "O5":
-                    points = 20;
-                    break;
-
-                case "O6":
-                    points = 12;
-                    break;
-
-                case "O7":
-                    points = 0;
-                    break;
-
-                case "O8":
-                    points = 0;
-                    break;
-
-                default:
-                    points = 0;
-                    Console.WriteLine("Error - Please check that entered data is valid");
-                    break;
-            }
+            points = GradeToPoints(grade);
 
             //Output
             Console.WriteLine("Points:" + points);
@@ -348,129 +176,152 @@ namespace LabOne
                     level = Console.ReadLine();
                     level = level.ToUpper();
 
-                    if (level == "H" || level == "HIGHER")
+                    do
                     {
-                        //Enter Percentage
-                        do
-                        {
-                            Console.Write("Please Enter Percentage: ");
-                            userGrade = Console.ReadLine();
+                        Console.Write("Please Enter Percentage: ");
+                        userGrade = Console.ReadLine();
 
-                            if (int.TryParse(userGrade, out grade))
-                            {
-                                grade = int.Parse(userGrade);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Error - Cannot Convert To Integer");
-                            }
-                        }
-                        while (!(int.TryParse(userGrade, out grade)));
-
-                        //Process
-                        if (grade < 30)
+                        if (int.TryParse(userGrade, out grade))
                         {
-                            points = 0;
-
-                        }
-                        else if (grade >= 30 && grade < 40)
-                        {
-                            points = 37;
-                        }
-                        else if (grade >= 40 && grade < 50)
-                        {
-                            points = 46;
-                        }
-                        else if (grade >= 50 && grade < 60)
-                        {
-                            points = 56;
-                        }
-                        else if (grade >= 60 && grade < 70)
-                        {
-                            points = 66;
-                        }
-                        else if (grade >= 70 && grade < 80)
-                        {
-                            points = 77;
-                        }
-                        else if (grade >= 80 && grade < 90)
-                        {
-                            points = 88;
-                        }
-                        else if (grade >= 90 && grade <= 100)
-                        {
-                            points = 100;
+                            grade = int.Parse(userGrade);
                         }
                         else
                         {
-                            points = 0;
+                            Console.WriteLine("Error - Cannot Convert To Integer");
                         }
                     }
-                    else if (level == "O" || level == "ORDINARY")
-                    {
-                        do
-                        {
+                    while (!(int.TryParse(userGrade, out grade)));
+
+                    points = PercentageToPoints(level, grade);
+
+                    #region Previous System Instead Of PercentageToPoints Method
+                    /*
+                                        if (level == "H" || level == "HIGHER")
+                                        {
+                                            //Enter Percentage
+                                            do
+                                            {
+                                                Console.Write("Please Enter Percentage: ");
+                                                userGrade = Console.ReadLine();
+
+                                                if (int.TryParse(userGrade, out grade))
+                                                {
+                                                    grade = int.Parse(userGrade);
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Error - Cannot Convert To Integer");
+                                                }
+                                            }
+                                            while (!(int.TryParse(userGrade, out grade)));
+
+                                            //Process
+                                            PercentageToPoints(level, grade);
+                                            if (grade < 30)
+                                            {
+                                                points = 0;
+
+                                            }
+                                            else if (grade >= 30 && grade < 40)
+                                            {
+                                                points = 37;
+                                            }
+                                            else if (grade >= 40 && grade < 50)
+                                            {
+                                                points = 46;
+                                            }
+                                            else if (grade >= 50 && grade < 60)
+                                            {
+                                                points = 56;
+                                            }
+                                            else if (grade >= 60 && grade < 70)
+                                            {
+                                                points = 66;
+                                            }
+                                            else if (grade >= 70 && grade < 80)
+                                            {
+                                                points = 77;
+                                            }
+                                            else if (grade >= 80 && grade < 90)
+                                            {
+                                                points = 88;
+                                            }
+                                            else if (grade >= 90 && grade <= 100)
+                                            {
+                                                points = 100;
+                                            }
+                                            else
+                                            {
+                                                points = 0;
+                                            }
+                                        }
+                                        else if (level == "O" || level == "ORDINARY")
+                                        {
+                                            do
+                                            {
 
 
-                            Console.Write("Please Enter Percentage: ");
-                            userGrade = Console.ReadLine();
-                            if (int.TryParse(userGrade, out grade))
-                            {
-                                grade = int.Parse(userGrade);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Error - Cannot Convert To Integer");
-                            }
-                        }
-                        while (!(int.TryParse(userGrade, out grade)));
+                                                Console.Write("Please Enter Percentage: ");
+                                                userGrade = Console.ReadLine();
+                                                if (int.TryParse(userGrade, out grade))
+                                                {
+                                                    grade = int.Parse(userGrade);
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Error - Cannot Convert To Integer");
+                                                }
+                                            }
+                                            while (!(int.TryParse(userGrade, out grade)));
 
-                        //Process
-                        if (grade < 30)
-                        {
-                            points = 0;
-                        }
-                        else if (grade >= 30 && grade < 40)
-                        {
-                            points = 0;
-                        }
-                        else if (grade >= 40 && grade < 50)
-                        {
-                            points = 12;
-                        }
-                        else if (grade >= 50 && grade < 60)
-                        {
-                            points = 20;
-                        }
-                        else if (grade >= 60 && grade < 70)
-                        {
-                            points = 28;
-                        }
-                        else if (grade >= 70 && grade < 80)
-                        {
-                            points = 37;
-                        }
-                        else if (grade >= 80 && grade < 90)
-                        {
-                            points = 46;
-                        }
-                        else if (grade >= 90 && grade <= 100)
-                        {
-                            points = 56;
-                        }
-                        else
-                        {
-                            points = 0;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Selection");
-                        points = 0;
-                    }
+                                            //Process
+                                            if (grade < 30)
+                                            {
+                                                points = 0;
+                                            }
+                                            else if (grade >= 30 && grade < 40)
+                                            {
+                                                points = 0;
+                                            }
+                                            else if (grade >= 40 && grade < 50)
+                                            {
+                                                points = 12;
+                                            }
+                                            else if (grade >= 50 && grade < 60)
+                                            {
+                                                points = 20;
+                                            }
+                                            else if (grade >= 60 && grade < 70)
+                                            {
+                                                points = 28;
+                                            }
+                                            else if (grade >= 70 && grade < 80)
+                                            {
+                                                points = 37;
+                                            }
+                                            else if (grade >= 80 && grade < 90)
+                                            {
+                                                points = 46;
+                                            }
+                                            else if (grade >= 90 && grade <= 100)
+                                            {
+                                                points = 56;
+                                            }
+                                            else
+                                            {
+                                                points = 0;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Invalid Selection");
+                                            points = 0;
+                                        }
+                                        */
+                    #endregion
 
                     exit = false;
-                    if (level == "H" || level == "HIGHER" || level == "O" || level == "ORDINARY")
+                    if (level[0] == 'H' || level[0] == 'O')
                     {
                         exit = true;
                     }
@@ -500,9 +351,9 @@ namespace LabOne
         {
             //Variables
             const string SENTINAL = "-1";
-            int grade;
+            int grade, points = 0;
             string userGrade = "0";
-            string level, message;
+            string level;
 
             do
             {
@@ -512,11 +363,7 @@ namespace LabOne
                 level = Console.ReadLine();
                 level = level.ToUpper();
 
-                if (level == SENTINAL)
-                {
-                    message = "Exit";
-                }
-                else if (level == "H" || level == "HIGHER")
+                if (level != SENTINAL)
                 {
                     do
                     {
@@ -534,111 +381,12 @@ namespace LabOne
                     }
                     while (!(int.TryParse(userGrade, out grade)));
 
-                    //Process
-                    if (grade < 30)
-                    {
-                        message = "0";
-                    }
-                    else if (grade >= 30 && grade < 40)
-                    {
-                        message = "37";
-                    }
-                    else if (grade >= 40 && grade < 50)
-                    {
-                        message = "46";
-                    }
-                    else if (grade >= 50 && grade < 60)
-                    {
-                        message = "56";
-                    }
-                    else if (grade >= 60 && grade < 70)
-                    {
-                        message = "66";
-                    }
-                    else if (grade >= 70 && grade < 80)
-                    {
-                        message = "77";
-                    }
-                    else if (grade >= 80 && grade < 90)
-                    {
-                        message = "88";
-                    }
-                    else if (grade >= 90 && grade <= 100)
-                    {
-                        message = "100";
-                    }
-                    else
-                    {
-                        message = "Error";
-                    }
-                }
-                else if (level == "O" || level == "ORDINARY")
-                {
-                    do
-                    {
-
-
-                        Console.Write("Please Enter Percentage: ");
-                        userGrade = Console.ReadLine();
-
-                        if (int.TryParse(userGrade, out grade))
-                        {
-                            grade = int.Parse(userGrade);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error - Cannot Convert To Integer");
-                        }
-                    }
-                    while (!(int.TryParse(userGrade, out grade)));
-
-                    //Process
-                    if (grade < 30)
-                    {
-                        message = "0";
-                    }
-                    else if (grade >= 30 && grade < 40)
-                    {
-                        message = "0";
-                    }
-                    else if (grade >= 40 && grade < 50)
-                    {
-                        message = "12";
-                    }
-                    else if (grade >= 50 && grade < 60)
-                    {
-                        message = "20";
-                    }
-                    else if (grade >= 60 && grade < 70)
-                    {
-                        message = "28";
-                    }
-                    else if (grade >= 70 && grade < 80)
-                    {
-                        message = "37";
-                    }
-                    else if (grade >= 80 && grade < 90)
-                    {
-                        message = "46";
-                    }
-                    else if (grade >= 90 && grade <= 100)
-                    {
-                        message = "56";
-                    }
-                    else
-                    {
-                        message = "Error";
-                    }
-                }
-                else
-                {
-                    message = "Invalid";
-                    Console.WriteLine("Invalid Selection");
-                }
+                    points = PercentageToPoints(level, grade);
+                }  
 
 
                 //Output
-                Console.WriteLine("Points: " + message);
+                Console.WriteLine("Points: " + points);
             }
             while (level != SENTINAL);
 
@@ -673,7 +421,7 @@ namespace LabOne
 
 
                     //Process
-                    PercentageToPoints("h", grade);
+                    points = PercentageToPoints("h", grade);
 
                     total += points;
 
@@ -697,11 +445,11 @@ namespace LabOne
             string[] results = new string[7];
             int total = 0;
 
-            int[] boundary = { 0, 30, 40, 50, 60, 70, 80, 90 };
+            int[] boundary = { 0, 30, 40, 50, 60, 70, 80, 90,101 };
             int[] higherPoints = { 0, 37, 46, 56, 66, 77, 88, 100 };
             //int[] ordinaryPoints = { 0, 12, 20, 28, 37, 46, 56 };
 
-            FileStream fs = File.Open(@"LCgrades.txt", FileMode.Open, FileAccess.ReadWrite);
+            FileStream fs = File.Open(@"LCPercentages.txt", FileMode.Open, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
             StreamWriter sw = new StreamWriter(fs);
 
@@ -712,14 +460,16 @@ namespace LabOne
             {
                 Console.WriteLine(test);
                 results = test.Split(',');
+
                 Console.WriteLine("Points:");
                 foreach (var percentage in results)
                 {
-                    for (int i = 0; i < boundary.Length - 1; i++)
+                    for (int i = 0; i < boundary.Length; i++)
                     {
                         if (int.Parse(percentage) > boundary[i] && int.Parse(percentage) < boundary[i + 1])
                         {
                             total += higherPoints[i];
+                            Console.WriteLine(higherPoints[i]);
                         }
                     }
                 }
@@ -743,42 +493,7 @@ namespace LabOne
             foreach (var grade in grades)
             {
                 //Process
-                if (grade < 30)
-                {
-                    points = 0;
-                }
-                else if (grade >= 30 && grade < 40)
-                {
-                    points = 37;
-                }
-                else if (grade >= 40 && grade < 50)
-                {
-                    points = 46;
-                }
-                else if (grade >= 50 && grade < 60)
-                {
-                    points = 56;
-                }
-                else if (grade >= 60 && grade < 70)
-                {
-                    points = 66;
-                }
-                else if (grade >= 70 && grade < 80)
-                {
-                    points = 77;
-                }
-                else if (grade >= 80 && grade < 90)
-                {
-                    points = 88;
-                }
-                else if (grade >= 90 && grade <= 100)
-                {
-                    points = 100;
-                }
-                else
-                {
-                    points = 0;
-                }
+                points = PercentageToPoints("H", grade);
 
                 total += points;
             }
@@ -802,17 +517,16 @@ namespace LabOne
 
             bool exit = false;
 
+            //Input
             Console.Write("Please Enter Name:");
             studName = Console.ReadLine();
 
             Console.Write("Please Enter Student Number:");
             studNum = Console.ReadLine();
 
-            Console.WriteLine();
-
             for (int i = 0; i < subjectAmount; i++)
             {
-                Console.Write("Please Enter Subject Name:");
+                Console.Write("\nPlease Enter Subject Name:");
                 subjectNames[i] = Console.ReadLine();
 
                 Console.Write("Please Enter Subject Level:");
@@ -823,79 +537,10 @@ namespace LabOne
                 subjectGrade[i] = Console.ReadLine();
                 subjectGrade[i] = subjectGrade[i].ToUpper();
 
+                //Process
                 do
                 {
-                    switch (subjectGrade[i])
-                    {
-                        case "H1":
-                            subjectPoints[i] = 100;
-                            break;
-
-                        case "H2":
-                            subjectPoints[i] = 88;
-                            break;
-
-                        case "H3":
-                            subjectPoints[i] = 77;
-                            break;
-
-                        case "H4":
-                            subjectPoints[i] = 66;
-                            break;
-
-                        case "H5":
-                            subjectPoints[i] = 56;
-                            break;
-
-                        case "H6":
-                            subjectPoints[i] = 46;
-                            break;
-
-                        case "H7":
-                            subjectPoints[i] = 37;
-                            break;
-
-                        case "H8":
-                            subjectPoints[i] = 0;
-                            break;
-
-                        case "O1":
-                            subjectPoints[i] = 56;
-                            break;
-
-                        case "O2":
-                            subjectPoints[i] = 46;
-                            break;
-
-                        case "O3":
-                            subjectPoints[i] = 37;
-                            break;
-
-                        case "O4":
-                            subjectPoints[i] = 28;
-                            break;
-
-                        case "O5":
-                            subjectPoints[i] = 20;
-                            break;
-
-                        case "O6":
-                            subjectPoints[i] = 12;
-                            break;
-
-                        case "O7":
-                            subjectPoints[i] = 0;
-                            break;
-
-                        case "O8":
-                            subjectPoints[i] = 0;
-                            break;
-
-                        default:
-                            subjectPoints[i] = 0;
-                            Console.WriteLine("Error - Please check that entered data is valid");
-                            break;
-                    }
+                    subjectPoints[i] = GradeToPoints(subjectGrade[i]);
 
                     exit = false;
                     if (subjectLevels[i] == "H" || subjectLevels[i] == "HIGHER" || subjectLevels[i] == "O" || subjectLevels[i] == "ORDINARY")
@@ -909,6 +554,7 @@ namespace LabOne
                 Console.WriteLine();
             }
 
+            //Output
             FileStream fs = new FileStream(@"PointReport.txt", FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
             StreamWriter sw = new StreamWriter(fs);
 
@@ -1028,6 +674,85 @@ namespace LabOne
 
             return points;
 
+        }
+
+        static int GradeToPoints(string Grade)
+        {
+            int points = 0;
+
+            switch (Grade)
+            {
+                case "H1":
+                    points = 100;
+                    break;
+
+                case "H2":
+                    points = 88;
+                    break;
+
+                case "H3":
+                    points = 77;
+                    break;
+
+                case "H4":
+                    points = 66;
+                    break;
+
+                case "H5":
+                    points = 56;
+                    break;
+
+                case "H6":
+                    points = 46;
+                    break;
+
+                case "H7":
+                    points = 37;
+                    break;
+
+                case "H8":
+                    points = 0;
+                    break;
+
+                case "O1":
+                    points = 56;
+                    break;
+
+                case "O2":
+                    points = 46;
+                    break;
+
+                case "O3":
+                    points = 37;
+                    break;
+
+                case "O4":
+                    points = 28;
+                    break;
+
+                case "O5":
+                    points = 20;
+                    break;
+
+                case "O6":
+                    points = 12;
+                    break;
+
+                case "O7":
+                    points = 0;
+                    break;
+
+                case "O8":
+                    points = 0;
+                    break;
+
+                default:
+                    points = 0;
+                    Console.WriteLine("Error - Please check that entered data is valid");
+                    break;
+            }
+
+            return points;
         }
     }
 }

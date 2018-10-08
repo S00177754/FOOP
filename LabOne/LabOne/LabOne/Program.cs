@@ -16,10 +16,17 @@ namespace LabOne
             int[] gradeTest = { 100, 98, 88, 86, 40, 56, 66 };
 
             //Input
+            Menu(ref menuChoice, ref gradeTest);
+
+            Console.ReadKey();
+        }
+
+        static void Menu(ref string menuChoice,ref int[]gradeTest)
+        {
             while (menuChoice != "10")
             {
-                Console.WriteLine();
-                Console.WriteLine("Please choose a function:");
+                //Replaced Console.WriteLine(); with a \n in next line
+                Console.WriteLine("\nPlease choose a function:");
                 Console.WriteLine("1.Exercise One,Three");
                 Console.WriteLine("2.Exercise Two");
                 Console.WriteLine("3.Exercise Four");
@@ -33,7 +40,7 @@ namespace LabOne
 
                 Console.Write("Enter Choice: ");
                 menuChoice = Console.ReadLine();
-                Console.WriteLine();
+
 
                 switch (menuChoice)
                 {
@@ -83,28 +90,20 @@ namespace LabOne
 
                 }
             }
-
-            Console.ReadKey();
         }
-
-
 
         //Exercise One, Three
         static void PercentagePoints()
         {
             //Variables
-            string userGrade;
-            string message;
-            string level;
-
+            string userGrade, message, level; //Grouped String variables together
             bool exit;
-
             int grade;
 
             //Input
             do
             {
-                Console.Write("Higher or Ordinary Level (H/O): ");
+                Console.Write("\nHigher or Ordinary Level (H/O): ");
                 level = Console.ReadLine();
                 level = level.ToUpper();
 
@@ -127,7 +126,7 @@ namespace LabOne
                     }
                     while (!(int.TryParse(userGrade, out grade)));
 
-                    //Process
+                    //Process(Takes in grade and gives out points)
                     if (grade < 30)
                     {
                         message = "0";
@@ -249,7 +248,7 @@ namespace LabOne
             string grade;
 
             //Inputs
-            Console.Write("Please Enter Grade:");
+            Console.Write("\nPlease Enter Grade:");
             grade = Console.ReadLine();
             grade = grade.ToUpper();
 
@@ -336,21 +335,16 @@ namespace LabOne
         {
             //Variables
             int[] results = new int[8];
-            string userGrade;
-            string level;
-
+            string userGrade, level;
             bool exit;
-
-            int grade;
-            int points;
+            int grade, points;
 
             for (int i = 0; i < 7; i++)
             {
                 //Input
                 do
                 {
-                    Console.WriteLine();
-                    Console.Write("Higher or Ordinary Level (H/O): ");
+                    Console.Write("\nHigher or Ordinary Level (H/O): ");
                     level = Console.ReadLine();
                     level = level.ToUpper();
 
@@ -506,17 +500,14 @@ namespace LabOne
         {
             //Variables
             const string SENTINAL = "-1";
-
             int grade;
-
             string userGrade = "0";
-            string level;
-            string message;
+            string level, message;
 
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("To Exit, enter -1!");
+                Console.WriteLine("\nTo Exit, enter -1!");
                 Console.Write("Higher or Ordinary Level (H/O): ");
                 level = Console.ReadLine();
                 level = level.ToUpper();
@@ -529,9 +520,7 @@ namespace LabOne
                 {
                     do
                     {
-
-
-                        Console.Write("Please Enter Percentage: ");
+                        Console.Write("\nPlease Enter Percentage: ");
                         userGrade = Console.ReadLine();
 
                         if (int.TryParse(userGrade, out grade))
@@ -684,42 +673,7 @@ namespace LabOne
 
 
                     //Process
-                    if (grade < 30)
-                    {
-                        points = 0;
-                    }
-                    else if (grade >= 30 && grade < 40)
-                    {
-                        points = 37;
-                    }
-                    else if (grade >= 40 && grade < 50)
-                    {
-                        points = 46;
-                    }
-                    else if (grade >= 50 && grade < 60)
-                    {
-                        points = 56;
-                    }
-                    else if (grade >= 60 && grade < 70)
-                    {
-                        points = 66;
-                    }
-                    else if (grade >= 70 && grade < 80)
-                    {
-                        points = 77;
-                    }
-                    else if (grade >= 80 && grade < 90)
-                    {
-                        points = 88;
-                    }
-                    else if (grade >= 90 && grade <= 100)
-                    {
-                        points = 100;
-                    }
-                    else
-                    {
-                        points = 0;
-                    }
+                    PercentageToPoints("h", grade);
 
                     total += points;
 
@@ -984,6 +938,95 @@ namespace LabOne
             sw.WriteLine("Total Points:" + totalPoints);
 
             sw.Close();
+
+        }
+
+        //Converts Percentage To Points
+        static int PercentageToPoints(string level, int percentage)
+        {
+            int points = 0;
+            level = level.ToUpper();
+
+            if (level[0] == 'H')
+            {
+                if (percentage < 30)
+                {
+                    points = 0;
+                }
+                else if (percentage >= 30 && percentage < 40)
+                {
+                    points = 37;
+                }
+                else if (percentage >= 40 && percentage < 50)
+                {
+                    points = 46;
+                }
+                else if (percentage >= 50 && percentage < 60)
+                {
+                    points = 56;
+                }
+                else if (percentage >= 60 && percentage < 70)
+                {
+                    points = 66;
+                }
+                else if (percentage >= 70 && percentage < 80)
+                {
+                    points = 77;
+                }
+                else if (percentage >= 80 && percentage < 90)
+                {
+                    points = 88;
+                }
+                else if (percentage >= 90 && percentage <= 100)
+                {
+                    points = 100;
+                }
+                else
+                {
+                    points = 0;
+                }
+            }
+            else if(level[0] == 'O')
+            {
+                if (percentage < 30)
+                {
+                    points = 0;
+                }
+                else if (percentage >= 30 && percentage < 40)
+                {
+                    points = 0;
+                }
+                else if (percentage >= 40 && percentage < 50)
+                {
+                    points = 12;
+                }
+                else if (percentage >= 50 && percentage < 60)
+                {
+                    points = 20;
+                }
+                else if (percentage >= 60 && percentage < 70)
+                {
+                    points = 28;
+                }
+                else if (percentage >= 70 && percentage < 80)
+                {
+                    points = 37;
+                }
+                else if (percentage >= 80 && percentage < 90)
+                {
+                    points = 46;
+                }
+                else if (percentage >= 90 && percentage <= 100)
+                {
+                    points = 56;
+                }
+                else
+                {
+                    points = 0;
+                }
+            }
+
+            return points;
 
         }
     }

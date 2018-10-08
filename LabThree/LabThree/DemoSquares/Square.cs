@@ -8,8 +8,23 @@ namespace DemoSquares
 {
     class Square
     {
-        private readonly int area = 0;
-        private readonly int length = 0;
+        private int area = 0;
+        public int Area
+        {
+            get
+            {
+                return area;
+            }
+        }
+
+        private int length = 0;
+        public int Length
+        {
+            get
+            {
+                return length;
+            }
+        }
 
         public Square(int sqLength)
         {
@@ -27,7 +42,7 @@ namespace DemoSquares
 
         private void Display()
         {
-            Console.WriteLine($"The area of a {length} by {length} square is {area}");
+            Console.WriteLine($"The area of a {Length} by {Length} square is {Area}");
         }
     }
 }

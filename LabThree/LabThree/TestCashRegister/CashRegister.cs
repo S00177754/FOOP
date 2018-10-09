@@ -8,6 +8,12 @@ namespace TestCashRegister
 {
     class CashRegister
     {
+        //Static Variables
+        public static decimal overallTotal = 0;
+        public static int overallItems = 0;
+
+
+        //Local Variables
         private decimal total;
         public decimal Total
         {
@@ -26,10 +32,16 @@ namespace TestCashRegister
             }
         }
 
+
+
+
         public void AddItem(decimal price)
         {
             total += price;
+            overallTotal += price;
+
             quantity++;
+            overallItems++;
 
             Console.WriteLine($"Adding an item worth {price}.");
         }

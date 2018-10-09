@@ -30,7 +30,7 @@ namespace TestCashRegister
                     priceInput = decimal.Parse(Console.ReadLine());
 
                 }
-
+                
                 switch (cashRegisterChoice)
                 {
                     case 1:
@@ -49,12 +49,18 @@ namespace TestCashRegister
             Console.WriteLine("Cash Register 1:");
             Console.WriteLine($"Total: {CR1.Total}  Number of Items:{CR1.Quantity}");
 
-            Console.WriteLine();
-
-            Console.WriteLine("Cash Register 1:");
+            Console.WriteLine("\nCash Register 2:");
             Console.WriteLine($"Total: {CR2.Total}  Number of Items:{CR2.Quantity}");
 
+            Console.WriteLine($"\nOverall Total: {CashRegister.overallTotal}");
+            Console.WriteLine($"Overall Quantity: {CashRegister.overallItems}");
+
             Console.ReadKey();
+
+        }
+
+        static void Menu()
+        {
 
         }
     }

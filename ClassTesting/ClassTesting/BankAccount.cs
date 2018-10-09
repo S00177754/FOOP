@@ -37,19 +37,44 @@ namespace ClassTesting
             }
         }
 
-        private string account_Name;
+        private string account_name;
         public string accountName
         {
             get
             {
-                return account_Name;
+                return account_name;
             }
 
             set
             {
-                account_Name = value;
+                account_name = value;
             }
         }
 
+        public BankAccount(int accountNumber,string accountName, double accountBalance)
+        {
+            account_Number = 0;
+            account_name = "";
+            account_Balance = 0;
+
+            account_Number = accountNumber;
+            account_name = accountName;
+            account_Balance = accountBalance;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("Account Number:" + accountNumber);
+            Console.WriteLine("Account Name:" + accountName);
+            Console.WriteLine("Account Balance:" + accountBalance);
+        }
+
+        public void Deposit(int amount)
+        {
+            Console.WriteLine("Deposit:" + amount);
+            accountBalance += amount;
+            Console.WriteLine("New Balance:" + accountBalance);
+            Console.ReadKey();
+        }
     }
 }

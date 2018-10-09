@@ -21,6 +21,7 @@ namespace LabOne
             Console.ReadKey();
         }
 
+        //Prints Menu and Handles choice
         static void Menu(ref string menuChoice,ref int[]gradeTest)
         {
             while (menuChoice != "10")
@@ -96,7 +97,7 @@ namespace LabOne
         static void PercentagePoints()
         {
             //Variables
-            string userGrade, level; //Grouped String variables together
+            string level; //Grouped String variables together
             bool exit;
             int grade, points = 0;
 
@@ -104,26 +105,12 @@ namespace LabOne
             do
             {
                 Console.Write("\nHigher or Ordinary Level (H/O): ");
-                level = Console.ReadLine();
-                level = level.ToUpper();
+                //level = Console.ReadLine(); level = level.ToUpper(); Compacted to single line
+                level = (Console.ReadLine()).ToUpper();
+                Console.WriteLine(level);
 
                 //Enter Percentage
-                do
-                {
-                    Console.Write("Please Enter Percentage: ");
-                    userGrade = Console.ReadLine();
-
-                    if (int.TryParse(userGrade, out grade))
-                    {
-                        grade = int.Parse(userGrade);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error - Cannot Convert To Integer");
-                    }
-                }
-                while (!(int.TryParse(userGrade, out grade)));
-
+                grade = EnterPercentage();
                 points = PercentageToPoints(level, grade);
 
                 exit = false;
@@ -147,8 +134,7 @@ namespace LabOne
 
             //Inputs
             Console.Write("\nPlease Enter Grade:");
-            grade = Console.ReadLine();
-            grade = grade.ToUpper();
+            grade = (Console.ReadLine()).ToUpper();
 
             //Process
             points = GradeToPoints(grade);
@@ -163,7 +149,7 @@ namespace LabOne
         {
             //Variables
             int[] results = new int[8];
-            string userGrade, level;
+            string level;
             bool exit;
             int grade, points;
 
@@ -173,25 +159,9 @@ namespace LabOne
                 do
                 {
                     Console.Write("\nHigher or Ordinary Level (H/O): ");
-                    level = Console.ReadLine();
-                    level = level.ToUpper();
-
-                    do
-                    {
-                        Console.Write("Please Enter Percentage: ");
-                        userGrade = Console.ReadLine();
-
-                        if (int.TryParse(userGrade, out grade))
-                        {
-                            grade = int.Parse(userGrade);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error - Cannot Convert To Integer");
-                        }
-                    }
-                    while (!(int.TryParse(userGrade, out grade)));
-
+                    level = (Console.ReadLine()).ToUpper();
+                    
+                    grade = EnterPercentage();
                     points = PercentageToPoints(level, grade);
 
                     #region Previous System Instead Of PercentageToPoints Method
@@ -352,7 +322,6 @@ namespace LabOne
             //Variables
             const string SENTINAL = "-1";
             int grade, points = 0;
-            string userGrade = "0";
             string level;
 
             do
@@ -365,21 +334,7 @@ namespace LabOne
 
                 if (level != SENTINAL)
                 {
-                    do
-                    {
-                        Console.Write("\nPlease Enter Percentage: ");
-                        userGrade = Console.ReadLine();
-
-                        if (int.TryParse(userGrade, out grade))
-                        {
-                            grade = int.Parse(userGrade);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error - Cannot Convert To Integer");
-                        }
-                    }
-                    while (!(int.TryParse(userGrade, out grade)));
+                    grade = EnterPercentage();
 
                     points = PercentageToPoints(level, grade);
                 }  
@@ -398,8 +353,7 @@ namespace LabOne
             //Variables
             string test = "word";
             string[] results = new string[7];
-            int total = 0;
-            int points = 0;
+            int total = 0, points = 0;
 
 
             FileStream fs = File.Open(@"LCgrades.txt", FileMode.Open, FileAccess.ReadWrite);
@@ -543,7 +497,7 @@ namespace LabOne
                     subjectPoints[i] = GradeToPoints(subjectGrade[i]);
 
                     exit = false;
-                    if (subjectLevels[i] == "H" || subjectLevels[i] == "HIGHER" || subjectLevels[i] == "O" || subjectLevels[i] == "ORDINARY")
+                    if ((subjectLevels[i])[0] == 'H' || (subjectLevels[i])[0] == 'O')
                     {
                         exit = true;
                     }
@@ -676,6 +630,7 @@ namespace LabOne
 
         }
 
+        //Converts Grade To Points
         static int GradeToPoints(string Grade)
         {
             int points = 0;
@@ -753,6 +708,30 @@ namespace LabOne
             }
 
             return points;
+        }
+
+        static int EnterPercentage()
+        {
+            int grade = 0;
+            string userPercentage;
+
+            do
+            {
+                Console.Write("Please Enter Percentage: ");
+                userPercentage = Console.ReadLine();
+
+                if (int.TryParse(userPercentage, out grade))
+                {
+                    grade = int.Parse(userPercentage);
+                }
+                else
+                {
+                    Console.WriteLine("Error - Cannot Convert To Integer");
+                }
+            }
+            while (!(int.TryParse(userPercentage, out grade)));
+
+            return grade;
         }
     }
 }

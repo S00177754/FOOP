@@ -10,7 +10,7 @@ namespace SchoolsDemo
     {
         static void Main(string[] args)
         {
-            School[] schoolList = new School[3];
+            School[] schoolList = new School[5];
 
             for (int i = 0; i < schoolList.Length; i++)
             {
@@ -20,16 +20,8 @@ namespace SchoolsDemo
 
             PrintData(schoolList);
             Array.Sort(schoolList);
+            Console.WriteLine("\nOrdered");
             PrintData(schoolList);
-
-            //int[] tester = { 2, 1, 4 };
-            //Console.WriteLine(tester[0]);
-            //Console.WriteLine(tester[1]);
-            //Console.WriteLine(tester[2]);
-            //Array.Sort<int>(tester);
-            //Console.WriteLine("\n" + tester[0]);
-            //Console.WriteLine(tester[1]);
-            //Console.WriteLine(tester[2]);
 
             Console.ReadKey();
         }

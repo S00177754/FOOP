@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace SchoolsDemo
 {
     class School: IComparable<School>
     {
+
         private string _schoolName;
         public string schoolName
         {
@@ -24,7 +26,18 @@ namespace SchoolsDemo
 
         public int CompareTo(School school)
         {
-            return _schoolStudentNumbers;
+            if (school == null)
+                return 1;
+
+            School otherSchool = school as School;
+
+            if (otherSchool != null)
+                return this.schoolStudentNumbers.CompareTo(otherSchool.schoolStudentNumbers);
+            else
+                throw new ArgumentException("Object is not a School");
+
         }
     }
+
+    
 }

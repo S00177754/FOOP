@@ -3,25 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClassTesting;
 
 namespace ClassTesting
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)			//.NETFiddle required Public Main()
         {
-            BankAccount BA1 = new BankAccount(245006,"Ronan",200.50);
-            //BankAccount BA2 = new BankAccount();
-            //BA1.accountNumber = 245006;
-            //BA1.accountName = "Ronan";
-            //BA1.accountBalance = 200.00;
 
-            BA1.Display();
 
-            BA1.Deposit(240);
+            BankAccount ba1 = new BankAccount();       //Create new object ba1 from BankAccount class
+            ba1.AccountNumber = 1;                     //Populate property values
+            ba1.AccountHolder = "Mary";
+            ba1.Balance = 1000;
 
-            Console.ReadKey();
+            BankAccount ba2 = new BankAccount();
+            ba2.AccountNumber = 2;
+            ba2.AccountHolder = "Ian";
+            ba2.Balance = -20;
+
+            BankAccount ba3 = new BankAccount(3, "Keith", 2000);     //Once we add Constructor, we can create object using this shortened syntax
+
+
+            ba1.DisplayAccounts();  //Call DisplayAccounts method for object ba1
+            ba2.DisplayAccounts();
+            ba3.DisplayAccounts();
+
+            ba1.Deposit(50);        //Call Deposit & Withdrawal methods - passing amounts
+            ba2.Deposit(100);
+            ba3.Withdraw(100);
+
+
+            Console.ReadLine();
+
+
         }
     }
 }

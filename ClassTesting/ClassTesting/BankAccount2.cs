@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassTesting
 {
-    class BankAccount
+    public class BankAccount
     {               //Class declaration
 
         private int _accountNumber;         //Declare private properties
@@ -29,11 +29,13 @@ namespace ClassTesting
             get { return _accountNumber; }      //Auto-implemented Property - so we don't need full getter/setter syntax
             set { _accountNumber = value; }
         }
+
         public string AccountHolder
         {
             get { return _accountHolder; }
             set { _accountHolder = value; }
         }
+
         public double Balance
         {
             get { return _balance; }
@@ -49,6 +51,7 @@ namespace ClassTesting
                 }
             }
         }
+
         public void DisplayAccounts()           //Method to Display Account details  - called from Main - e.g. ba1.DisplayAccounts();
         {										// NOTE - .NETFiddle didn't like $" {AccountNumber}" syntax so used + here
             Console.WriteLine("BankAccount Number: " + AccountNumber +
@@ -71,6 +74,20 @@ namespace ClassTesting
         }
 
 
+    }
+
+    public class KidsAccount : BankAccount
+    {
+        public KidsAccount()
+        {
+        }
+
+        public KidsAccount(int AccountNumber, string AccountHolder, double Balance) //Constructor - parameterized to initialize properties in new Bank Account object and enable short syntax for creating new objects
+        {
+            this.AccountNumber = AccountNumber;
+            this.AccountHolder = AccountHolder;
+            this.Balance = Balance;
+        }
     }
 }
 

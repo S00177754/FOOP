@@ -16,10 +16,6 @@ namespace CA12017
         static void Main(string[] args)
         {
             //Variables
-            
-            const decimal SENTINAL = 0;
-
-
             decimal TotalCost = 0;
             int NumOfFittings = 0;
 

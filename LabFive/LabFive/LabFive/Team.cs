@@ -9,54 +9,58 @@ namespace LabFive
     class Team : IComparable
     {
         //Variables
-        private string teamName;
-        public string TeamName { get { return teamName; } }
-
-        private int numberOfWins = 0;
-        public int NumberOfWins { get { return numberOfWins; } }
-
-        private int numberOfDraws = 0;
-        public int NumberOfDraws { get { return numberOfDraws; } }
-
-        private int numberOfLosses = 0;
-        public int NumberOfLosses { get { return numberOfLosses; } }
-
-        private int numberOfGames = 0;
-        public int NumberOfGames { get { return numberOfGames; } }
-
-        private int points = 0;
-        public int Points { get { return points; } }
+        private readonly string teamName;
+        private readonly string managerName;
+        public string TeamName { get { return teamName} }
+        public string ManagerName { get { return managerName} }
+        public int Wins { get; private set; } = 0;
+        public int Draw { get; private set; } = 0;
+        public int Losses { get; private set; } = 0;
+        public int Games { get; private set; } = 0;
+        public int Points { get; private set; } = 0;
 
         public enum Result { Win, Draw, Lose };
 
         //Constructor
-        public Team(string NameOfTeam)
+        public Team() : this("ATeam")
+        {
+        }
+
+        public Team(string NameOfTeam) : this(NameOfTeam, "AnOther")
         {
             teamName = NameOfTeam;
+        }
+
+        public Team(string NameOfTeam, string NameOfManager)
+        {
+            teamName = NameOfTeam;
+            managerName = NameOfManager;  
         }
 
         //Methods
         public void AddResult(Result result)
         {
-            numberOfGames++;
-            if (result == Result.Win)
+            switch (result)
             {
-                numberOfWins++;
-                points += 3;
-            }
-            else if(result == Result.Draw)
-            {
-                numberOfDraws++;
-                points += 1;
-            }
-            else if(result == Result.Lose)
-            {
-                numberOfLosses++;
-            }
-            else
-            {
-                Console.WriteLine("Invalid Result");
-                numberOfGames--;
+                case Result.Win:
+                    Wins++;
+                    Points += 3;
+                    Games++;
+                    break;
+
+                case Result.Draw:
+                    Draw++;
+                    Points += 1;
+                    Games++;
+                    break;
+
+                case Result.Lose:
+                    Losses++;
+                    Games++;
+                    break;
+
+                default:
+                    break;
             }
 
             
@@ -76,6 +80,11 @@ namespace LabFive
             else
                 throw new ArgumentException("Object is not a Team");
 
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0,-20}{1,-9}{2,-7}{3,-7}{4,-7}{5,-7}{6,-7}",teamName,managerName,Points,Wins,Draw,Losses,Games);
         }
     }
 }

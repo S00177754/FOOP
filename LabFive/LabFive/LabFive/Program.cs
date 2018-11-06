@@ -9,7 +9,7 @@ namespace LabFive
     class Program
     {
         //Global Variables
-        const string FORMAT_PRINT = "{0,-20}{1,-7}{2,-7}{3,-7}{4,-7}{5,-7}";
+        const string FORMAT_PRINT = "{0,-20}{1,-9}{2,-7}{3,-7}{4,-7}{5,-7}{6,-9}";
 
         static void Main(string[] args)
         {
@@ -41,10 +41,10 @@ namespace LabFive
 
         public static void PrintData(Team[] Teams)
         {
-            Console.WriteLine("\n"+FORMAT_PRINT, "Team Name", "Points", "Wins", "Draws", "Loses", "Played");
+            Console.WriteLine("\n"+FORMAT_PRINT, "Team Name","Manager", "Points", "Wins", "Draws", "Loses", "Played");
             foreach (Team tm in Teams)
             {
-                Console.WriteLine(FORMAT_PRINT, tm.TeamName, tm.Points, tm.NumberOfWins, tm.NumberOfDraws, tm.NumberOfLosses, tm.NumberOfGames);
+                Console.WriteLine(tm.ToString());
             }
         }
     }

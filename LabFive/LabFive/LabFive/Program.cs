@@ -32,7 +32,7 @@ namespace LabFive
 
             PrintData(Teams);
 
-            Array.Sort<Team>(Teams);
+            Array.Sort(Teams);
             Array.Reverse(Teams);
             PrintData(Teams);
 

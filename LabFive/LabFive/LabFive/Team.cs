@@ -11,8 +11,8 @@ namespace LabFive
         //Variables
         private readonly string teamName;
         private readonly string managerName;
-        public string TeamName { get { return teamName} }
-        public string ManagerName { get { return managerName} }
+        public string TeamName { get { return teamName; } }
+        public string ManagerName { get { return managerName; } }
         public int Wins { get; private set; } = 0;
         public int Draw { get; private set; } = 0;
         public int Losses { get; private set; } = 0;
@@ -66,20 +66,10 @@ namespace LabFive
             
         }
 
-        public int CompareTo(object team)
+        public int CompareTo(object obj)
         {
-            //team = (Team)team;
-
-            if (team == null)
-                return 1;
-
-            Team otherTeam = team as Team;
-
-            if (otherTeam != null)
-                return this.Points.CompareTo(otherTeam.Points);
-            else
-                throw new ArgumentException("Object is not a Team");
-
+            Team That = (Team)obj;
+            return this.Points.CompareTo(That.Points);
         }
 
         public override string ToString()

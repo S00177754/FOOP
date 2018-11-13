@@ -30,10 +30,12 @@ namespace LabSix
     class OverdueBill: Bill
     {
         public int Days { get; set; }
+        public DateTime DueDate { get; set; }
 
-        public OverdueBill(string name,decimal amount,int daysOverdue): base(name, amount)
+        public OverdueBill(string name,decimal amount,DateTime dueDate): base(name, amount)
         {
-            Days = daysOverdue;
+            DueDate = dueDate;
+            Days = (int)(DateTime.Now - DueDate).TotalDays;
         }
 
         public override string ToString()

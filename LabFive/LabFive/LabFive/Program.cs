@@ -9,14 +9,14 @@ namespace LabFive
     class Program
     {
         //Global Variables
-        const string FORMAT_PRINT = "{0,-20}{1,-9}{2,-7}{3,-7}{4,-7}{5,-7}{6,-9}";
+        const string FORMAT_PRINT = "{0,-20}{1,-20}{2,-7}{3,-7}{4,-7}{5,-7}{6,-9}";
 
         static void Main(string[] args)
         {
             //Teams
-            Team SligoRovers = new Team("Sligo Rovers");
+            Team SligoRovers = new Team("Sligo Rovers","Mark Sparky");
             Team FinnHarps = new Team("Finn Harps");
-            Team GalwayUnited = new Team("Galway United");
+            Team GalwayUnited = new Team("Galway United","Alfred Alistar");
             Team DerryCity = new Team("Derry City");
             Team Dundalk = new Team("Dundalk");
             Team[] Teams = { SligoRovers, FinnHarps, GalwayUnited, DerryCity, Dundalk };

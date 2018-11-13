@@ -74,7 +74,7 @@ namespace LabFive
 
         public override string ToString()
         {
-            return string.Format("{0,-20}{1,-9}{2,-7}{3,-7}{4,-7}{5,-7}{6,-7}",teamName,managerName,Points,Wins,Draw,Losses,Games);
+            return string.Format("{0,-20}{1,-20}{2,-7}{3,-7}{4,-7}{5,-7}{6,-7}",teamName,managerName,Points,Wins,Draw,Losses,Games);
         }
     }
 }

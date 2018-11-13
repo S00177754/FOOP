@@ -11,7 +11,7 @@ namespace LabSix
         static void Main(string[] args)
         {
             Bill bill = new Bill("Ronan",24.20m);
-            OverdueBill overdueBill = new OverdueBill("Ben",100.46m,12);
+            OverdueBill overdueBill = new OverdueBill("Ben",100.46m, new DateTime(2018, 11, 10));
 
             Console.WriteLine(bill.ToString());
             Console.WriteLine(overdueBill.ToString());

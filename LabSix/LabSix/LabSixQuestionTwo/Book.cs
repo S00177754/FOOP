@@ -39,7 +39,8 @@ namespace LabSixQuestionTwo
         public string StudentYear { get; private set; }
         public override decimal Price
         {
-            get { return Price; }
+            get { return price; }
+
             set
             {
                 if (value >= 20 && value <= 80)
@@ -65,7 +66,7 @@ namespace LabSixQuestionTwo
     {
         public override decimal Price
         {
-            get { return Price; }
+            get { return price; }
             set
             {
                 if (value >= 35 && value <= 100)
@@ -74,6 +75,11 @@ namespace LabSixQuestionTwo
                 }
 
             }
+        }
+
+        public CoffeeTableBook(string isbn, string title, string author, decimal price) : base(isbn, title, author, price)
+        {
+            
         }
     }
 }

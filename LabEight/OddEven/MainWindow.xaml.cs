@@ -37,11 +37,13 @@ namespace OddEven
             {
                 txtblockOutcome.Text = "Number Is Even.";
                 txtblockOutcome.Foreground = Brushes.White;
-                txtblockOutcome.Background = Brushes.Red;
+                txtblockOutcome.Background = Brushes.Green;
             }
             else
             {
                 txtblockOutcome.Text = "Number Is Odd.";
+                txtblockOutcome.Foreground = Brushes.White;
+                txtblockOutcome.Background = Brushes.Red;
             }
         }
 

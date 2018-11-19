@@ -97,5 +97,14 @@
   <ItemGroup>
     <Resource Include="Images\background.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DnD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\buttonResize.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

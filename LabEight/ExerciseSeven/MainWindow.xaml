@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExerciseSeven"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Icon="Images\DnD.png"
+        Title="DnD Player Library" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid x:Name="imgAddPlayer">
         <Image x:Name="imgBackground" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Source="Images/background.jpg" Stretch="Fill"/>
-
-        <ListBox x:Name="listbxPLayerList" HorizontalAlignment="Left" Height="297" Margin="10,57,0,0" VerticalAlignment="Top" Width="281" Opacity="0.75"/>
-
+        <Image x:Name="imgScrollList" HorizontalAlignment="Left" Height="307" Margin="10,46,0,0" VerticalAlignment="Top" Width="295" Source="Images/scroll.png" Stretch="Fill"/>
+        <ListBox x:Name="listbxPLayerList" HorizontalAlignment="Left" Height="239" Margin="51,82,0,0" VerticalAlignment="Top" Width="209" Background="Transparent" BorderThickness="0"/>
         <TextBox x:Name="txtboxAddPlayer" HorizontalAlignment="Left" Height="31" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18" Opacity="0.75"/>
-        <Button x:Name="btnPlayerAdd" Content="Add Player" HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top" Width="89" Height="31" FontSize="14" FontFamily="Times New Roman" FontStyle="Italic" Click="BtnPlayerAdd_Click"/>
-        <Button x:Name="btnDeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="128" Height="32" Click="BtnDeletePlayer_Click"/>
-        <Button x:Name="btnViewPlayer" Content="View Player" HorizontalAlignment="Left" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Height="33"/>
 
+        <Image x:Name="imgPlayerAdd" HorizontalAlignment="Left" Height="31" Margin="202,10,0,0" VerticalAlignment="Top" Width="89" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnPlayerAdd" Content="Add Player" HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top" Width="89" Height="31" FontSize="14" FontFamily="Times New Roman" FontStyle="Italic" Click="BtnPlayerAdd_Click" Background="Transparent" Foreground="White" BorderThickness="0"/>
+        <Image x:Name="imgDeletePlayer" HorizontalAlignment="Left" Height="31" Margin="10,369,0,0" VerticalAlignment="Top" Width="128" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnDeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="128" Height="32" Click="BtnDeletePlayer_Click" Background="Transparent" BorderThickness="0" Foreground="White"/>
+        <Image x:Name="imgViewPlayer" HorizontalAlignment="Left" Height="33" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnViewPlayer" Content="View Player" HorizontalAlignment="Left" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White"/>
+
+        
     </Grid>
 </Window>

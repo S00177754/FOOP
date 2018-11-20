@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabEight", "LabEight\LabEig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddEven", "OddEven\OddEven.csproj", "{29485215-4F64-4B77-9F73-82EE4FDCD100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciseSeven", "ExerciseSeven\ExerciseSeven.csproj", "{85EB349F-C3D6-47DB-8A9F-D25EBFB9BFE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DndApp", "ExerciseSeven\DndApp.csproj", "{85EB349F-C3D6-47DB-8A9F-D25EBFB9BFE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

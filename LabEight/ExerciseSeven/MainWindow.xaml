@@ -8,18 +8,65 @@
         Icon="Images\DnD.png"
         Title="DnD Player Library" Height="450" Width="800" ResizeMode="NoResize">
     <Grid x:Name="imgAddPlayer">
+        <!--Background Image-->
         <Image x:Name="imgBackground" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Source="Images/background.jpg" Stretch="Fill"/>
+
+        <!--List of  Players-->
         <Image x:Name="imgScrollList" HorizontalAlignment="Left" Height="307" Margin="10,46,0,0" VerticalAlignment="Top" Width="295" Source="Images/scroll.png" Stretch="Fill"/>
         <ListBox x:Name="listbxPLayerList" HorizontalAlignment="Left" Height="239" Margin="51,82,0,0" VerticalAlignment="Top" Width="209" Background="Transparent" BorderThickness="0"/>
-        <TextBox x:Name="txtboxAddPlayer" HorizontalAlignment="Left" Height="31" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18" Opacity="0.75"/>
 
+        <!--Add Player Button-->
         <Image x:Name="imgPlayerAdd" HorizontalAlignment="Left" Height="31" Margin="202,10,0,0" VerticalAlignment="Top" Width="89" Source="Images/buttonResize.png" Stretch="Fill"/>
         <Button x:Name="btnPlayerAdd" Content="Add Player" HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top" Width="89" Height="31" FontSize="14" FontFamily="Times New Roman" FontStyle="Italic" Click="BtnPlayerAdd_Click" Background="Transparent" Foreground="White" BorderThickness="0"/>
+        <TextBox x:Name="txtboxAddPlayer" HorizontalAlignment="Left" Height="31" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18" Opacity="0.75"/>
+
+        <!--Delete Player Data Button-->
         <Image x:Name="imgDeletePlayer" HorizontalAlignment="Left" Height="31" Margin="10,369,0,0" VerticalAlignment="Top" Width="128" Source="Images/buttonResize.png" Stretch="Fill"/>
         <Button x:Name="btnDeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="128" Height="32" Click="BtnDeletePlayer_Click" Background="Transparent" BorderThickness="0" Foreground="White"/>
-        <Image x:Name="imgViewPlayer" HorizontalAlignment="Left" Height="33" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
-        <Button x:Name="btnViewPlayer" Content="View Player" HorizontalAlignment="Left" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White"/>
 
+        <!--View Player Data Button-->
+        <Image x:Name="imgViewPlayer" HorizontalAlignment="Left" Height="33" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnViewPlayer" Content="View Player" HorizontalAlignment="Left" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnViewPlayer_Click"/>
+
+        <!--Player Name Field, not currently changable-->
+        <Label x:Name="lblPlayerName" Content="" HorizontalAlignment="Left" Margin="310,28,0,0" VerticalAlignment="Top" Background="White" Width="206" Opacity="0.75"/>
         
+        <!--Armor Class Field-->
+        <Label x:Name="lblPlayerAc" Content="Armor Class:" HorizontalAlignment="Left" Margin="310,126,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
+        <TextBox x:Name="txtblkAC" HorizontalAlignment="Left" Margin="428,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+
+        <!--Player Class Field-->
+        <Label x:Name="lblPlayerClass" Content="Player Class:" HorizontalAlignment="Left" Margin="310,64,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
+        <TextBox x:Name="txtblkClass" HorizontalAlignment="Left" Margin="428,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+
+        <!--Player Race Field-->
+        <Label x:Name="lblPlayerRace" Content="Player Race:" HorizontalAlignment="Left" Margin="310,95,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
+        <TextBox x:Name="txtblkRace" HorizontalAlignment="Left" Margin="428,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+
+        <!--Max Health Field-->
+        <Label x:Name="lblMaxHealth" Content="Max Health:" HorizontalAlignment="Left" Margin="310,157,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
+        <TextBox x:Name="txtblkMaxHealth" HorizontalAlignment="Left" Margin="428,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+
+        <!--Health Field-->
+        <Label x:Name="lblHealth" Content="Health:" HorizontalAlignment="Left" Margin="310,188,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
+        <TextBox x:Name="txtblkHealth" HorizontalAlignment="Left" Margin="428,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+
+        <!--Save Fields Button-->
+        <Image x:Name="imgSavePlayer" HorizontalAlignment="Left" Height="33" Margin="345,370,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnSavePlayer" Content="Save Changes" HorizontalAlignment="Left" Margin="342,370,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnSavePlayer_Click"/>
+
+        <!--Export List Button-->
+        <Image x:Name="imgExportList" HorizontalAlignment="Left" Height="33" Margin="646,370,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnExportList" Content="Export List" HorizontalAlignment="Left" Margin="646,370,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+
+        <!--Export Selected Button-->
+        <Image x:Name="imgExportSelected" HorizontalAlignment="Left" Height="33" Margin="646,332,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnExportSelected" Content="Export Selected" HorizontalAlignment="Left" Margin="646,332,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+
+        <!--Import Button-->
+        <Image x:Name="imgImport" HorizontalAlignment="Left" Height="33" Margin="646,294,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="646,294,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+
+
     </Grid>
 </Window>

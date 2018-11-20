@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
+
+using System.Diagnostics;
 
 namespace ExerciseSeven
 {
@@ -23,10 +26,15 @@ namespace ExerciseSeven
     {
         //Variables
         List<Player> players = new List<Player>();
+        
+        
+        //brush.ImageSource = new BitmapImage(new Uri("Images/ContentImage.png", UriKind.Relative));
+        
 
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         //Creates New Player based on string in input field
@@ -80,6 +88,97 @@ namespace ExerciseSeven
                 players[selectedIndex].UpdatePlayer(txtblkClass.Text, txtblkRace.Text, int.Parse(txtblkAC.Text), int.Parse(txtblkMaxHealth.Text), int.Parse(txtblkHealth.Text));
             }
         }
+
+        //METHODS//
+        public void ImportFile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+
+            fileDialog.DefaultExt = ".txt";
+            Nullable<bool> result = fileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                // Open document 
+                string filename = fileDialog.FileName;
+
+                FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                StreamReader sr = new StreamReader(fs);
+                
+                string dataInput;
+                string[] dataSet = new string[6];
+                dataInput = sr.ReadLine();
+
+                while(dataInput != null)
+                {
+                    dataSet = dataInput.Split(',');
+                    players.Add(new Player(dataSet[0], dataSet[1], dataSet[2], int.Parse(dataSet[3]), int.Parse(dataSet[4]), int.Parse(dataSet[5]) ) );
+                    listbxPLayerList.Items.Add(dataSet[0]);
+                    dataInput = sr.ReadLine();
+                    //Debug.WriteLine("Read new line");
+                }
+
+                sr.Close();
+            }
+        }
+
+        public void Export(string operation)
+        {
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.DefaultExt = ".txt";
+            Nullable<bool> result = saveFileDialog.ShowDialog();
+
+            if(result == true)
+            {
+                string filename = saveFileDialog.FileName;
+                string exportLine;
+
+                FileStream fs = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+
+                if (operation == "Single")
+                {
+                    exportLine = players[listbxPLayerList.SelectedIndex].FormatExport();
+                    sw.WriteLine(exportLine);
+                }
+                else if (operation == "All")
+                {
+                    for (int i = 0; i < listbxPLayerList.Items.Count; i++)
+                    {
+                        exportLine = players[i].FormatExport();
+                        sw.WriteLine(exportLine);
+                    }
+                    
+                    //exportLine = players[counter].FormatExport();
+
+                    //while(exportLine != null)
+                    //{
+                    //sw.WriteLine(exportLine);
+                    //exportLine = players[counter].FormatExport();
+                    //counter++;
+                    //}
+                }
+
+                    sw.Close();
+            }
+        }
+
+        private void BtnImport_Click(object sender, RoutedEventArgs e)
+        {
+            ImportFile();
+        }
+
+        private void BtnExportSelected_Click(object sender, RoutedEventArgs e)
+        {
+            Export("Single");
+        }
+
+        private void BtnExportList_Click(object sender, RoutedEventArgs e)
+        {
+            Export("All");
+        }
     }
 
     public class Player
@@ -93,14 +192,18 @@ namespace ExerciseSeven
         public int Health { get; private set; }
 
         //Constructor
-        public Player(string name)
+        public Player(string name) : this(name, "Fighter", "Human", 12, 8, 8)
+        {
+        }
+
+        public Player(string name,string plyClass,string race,int ac, int maxHealth, int health)
         {
             Name = name;
-            Class = "Fighter";
-            Race = "Human";
-            AC = 12;
-            MaxHealth = 6;
-            Health = 6;
+            Class = plyClass;
+            Race = race;
+            AC = ac;
+            MaxHealth = maxHealth;
+            Health = health;
         }
 
         //Methods
@@ -117,9 +220,9 @@ namespace ExerciseSeven
         /// <summary>
         /// Creates string in csv format for exporting of data via text file
         /// </summary>
-        public string FormatExport(Player pl)
+        public string FormatExport()
         {
-            return string.Format($"{Name},{Race},{AC},{MaxHealth},{Health}");
+            return string.Format($"{Name},{Class},{Race},{AC},{MaxHealth},{Health}");
         }
     }
 }

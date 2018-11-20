@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:ExerciseSeven"
         mc:Ignorable="d"
         Icon="Images\DnD.png"
-        Title="DnD Player Library" Height="450" Width="800" ResizeMode="NoResize">
+        Title="DnD Player Library" Height="450" Width="921.6" ResizeMode="NoResize">
     <Grid x:Name="imgAddPlayer">
         <!--Background Image-->
-        <Image x:Name="imgBackground" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" Source="Images/background.jpg" Stretch="Fill"/>
+        <Image x:Name="imgBackground" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="915" Source="Images/background.jpg" Stretch="Fill"/>
 
         <!--List of  Players-->
         <Image x:Name="imgScrollList" HorizontalAlignment="Left" Height="307" Margin="10,46,0,0" VerticalAlignment="Top" Width="295" Source="Images/scroll.png" Stretch="Fill"/>
@@ -29,43 +29,56 @@
         <Button x:Name="btnViewPlayer" Content="View Player" HorizontalAlignment="Left" Margin="153,369,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnViewPlayer_Click"/>
 
         <!--Player Name Field, not currently changable-->
-        <Label x:Name="lblPlayerName" Content="" HorizontalAlignment="Left" Margin="310,28,0,0" VerticalAlignment="Top" Background="White" Width="206" Opacity="0.75"/>
-        
+        <Image HorizontalAlignment="Left" Height="320" Margin="310,28,0,0" VerticalAlignment="Top" Width="220" Source="Images/page.png" Stretch="Fill"/>
+        <Image HorizontalAlignment="Left" Height="320" Margin="530,28,0,0" VerticalAlignment="Top" Width="220" Source="Images/page.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Label x:Name="lblPlayerName" Content="" HorizontalAlignment="Left" Margin="320,42,0,0" VerticalAlignment="Top" Background="Transparent" Width="206"/>
+
         <!--Armor Class Field-->
-        <Label x:Name="lblPlayerAc" Content="Armor Class:" HorizontalAlignment="Left" Margin="310,126,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
-        <TextBox x:Name="txtblkAC" HorizontalAlignment="Left" Margin="428,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+        <Label x:Name="lblPlayerAc" Content="Armor Class:" HorizontalAlignment="Left" Margin="320,135,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Opacity="0.75"/>
+        <TextBox x:Name="txtblkAC" HorizontalAlignment="Left" Margin="400,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="126" Opacity="0.75" TextAlignment="Center"/>
 
         <!--Player Class Field-->
-        <Label x:Name="lblPlayerClass" Content="Player Class:" HorizontalAlignment="Left" Margin="310,64,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
-        <TextBox x:Name="txtblkClass" HorizontalAlignment="Left" Margin="428,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+        <Label x:Name="lblPlayerClass" Content="Player Class:" HorizontalAlignment="Left" Margin="320,73,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Opacity="0.75"/>
+        <TextBox x:Name="txtblkClass" HorizontalAlignment="Left" Margin="400,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="126" Opacity="0.75" TextAlignment="Center"/>
 
         <!--Player Race Field-->
-        <Label x:Name="lblPlayerRace" Content="Player Race:" HorizontalAlignment="Left" Margin="310,95,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
-        <TextBox x:Name="txtblkRace" HorizontalAlignment="Left" Margin="428,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+        <Label x:Name="lblPlayerRace" Content="Player Race:" HorizontalAlignment="Left" Margin="320,104,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Opacity="0.75"/>
+        <TextBox x:Name="txtblkRace" HorizontalAlignment="Left" Margin="400,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="126" Opacity="0.75" TextAlignment="Center"/>
 
         <!--Max Health Field-->
-        <Label x:Name="lblMaxHealth" Content="Max Health:" HorizontalAlignment="Left" Margin="310,157,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
-        <TextBox x:Name="txtblkMaxHealth" HorizontalAlignment="Left" Margin="428,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+        <Label x:Name="lblMaxHealth" Content="Max Health:" HorizontalAlignment="Left" Margin="320,166,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Opacity="0.75"/>
+        <TextBox x:Name="txtblkMaxHealth" HorizontalAlignment="Left" Margin="400,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="126" Opacity="0.75" TextAlignment="Center"/>
 
         <!--Health Field-->
-        <Label x:Name="lblHealth" Content="Health:" HorizontalAlignment="Left" Margin="310,188,0,0" VerticalAlignment="Top" Background="White" Width="113" Opacity="0.75"/>
-        <TextBox x:Name="txtblkHealth" HorizontalAlignment="Left" Margin="428,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="88" Opacity="0.75" TextAlignment="Center"/>
+        <Label x:Name="lblHealth" Content="Health:" HorizontalAlignment="Left" Margin="320,197,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Opacity="0.75"/>
+        <TextBox x:Name="txtblkHealth" HorizontalAlignment="Left" Margin="400,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Height="26" Width="126" Opacity="0.75" TextAlignment="Center"/>
 
         <!--Save Fields Button-->
-        <Image x:Name="imgSavePlayer" HorizontalAlignment="Left" Height="33" Margin="345,370,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
-        <Button x:Name="btnSavePlayer" Content="Save Changes" HorizontalAlignment="Left" Margin="342,370,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnSavePlayer_Click"/>
+        <Image x:Name="imgSavePlayer" HorizontalAlignment="Left" Height="33" Margin="458,367,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnSavePlayer" Content="Save Changes" HorizontalAlignment="Left" Margin="458,367,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnSavePlayer_Click"/>
 
         <!--Export List Button-->
-        <Image x:Name="imgExportList" HorizontalAlignment="Left" Height="33" Margin="646,370,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
-        <Button x:Name="btnExportList" Content="Export List" HorizontalAlignment="Left" Margin="646,370,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+        <Button x:Name="btnExportList" Content="Export List" HorizontalAlignment="Left" Margin="772,114,0,0" VerticalAlignment="Top" Width="138" Height="33"  BorderThickness="0" Foreground="White" Click="BtnExportList_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/buttonResize.png"></ImageBrush>
+            </Button.Background></Button>
 
         <!--Export Selected Button-->
-        <Image x:Name="imgExportSelected" HorizontalAlignment="Left" Height="33" Margin="646,332,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
-        <Button x:Name="btnExportSelected" Content="Export Selected" HorizontalAlignment="Left" Margin="646,332,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+        <Image x:Name="imgExportSelected" HorizontalAlignment="Left" Height="33" Margin="772,76,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnExportSelected" Content="Export Selected" HorizontalAlignment="Left" Margin="767,76,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnExportSelected_Click" />
 
         <!--Import Button-->
-        <Image x:Name="imgImport" HorizontalAlignment="Left" Height="33" Margin="646,294,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
-        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="646,294,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" />
+        <Image x:Name="imgImport" HorizontalAlignment="Left" Height="33" Margin="772,38,0,0" VerticalAlignment="Top" Width="138" Source="Images/buttonResize.png" Stretch="Fill"/>
+        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="772,38,0,0" VerticalAlignment="Top" Width="138" Height="33" Background="Transparent" BorderThickness="0" Foreground="White" Click="BtnImport_Click" />
 
 
     </Grid>

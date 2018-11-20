@@ -106,5 +106,8 @@
   <ItemGroup>
     <Resource Include="Images\buttonResize.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\page.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

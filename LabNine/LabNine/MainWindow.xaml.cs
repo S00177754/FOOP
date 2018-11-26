@@ -38,13 +38,42 @@ namespace LabNine
             members.Add(MB);
             members.Add(JB);
             members.Add(SB);
-            lstbxMembers.DataContext = members;
+            //lstbxMembers.DataContext = members;
+            lstbxMembers.ItemsSource = members;
+
+
+            //set source of combo box
+            cmbbxFilterMembers.ItemsSource = GetMemberhipTypes();
         }
 
         private void LstbxMembers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtbkMemberInfo.Text = "{0,15}{1,30}";
+            Member info = (Member)lstbxMembers.SelectedItem;
+            txtbkMemberInfo.Text = info.DisplayMemberDetails();
+
            
+        }
+
+        private List<String> GetMemberhipTypes()
+        {
+            List<String> list = new List<string>();
+            //addng all as an option to view all members
+            list.Add("All");
+
+            string[] names = Enum.GetNames(typeof(Member.MemberType));
+
+            list.AddRange(names);
+
+            //foreach (var m in members)
+            //{
+            //    list.Add(m.MemberShipType.ToString());
+            //}
+            return list;
+        }
+
+        private void CmbbxFilterMembers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

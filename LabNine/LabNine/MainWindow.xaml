@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="AntiqueWhite">
         <ListBox x:Name="lstbxMembers" HorizontalAlignment="Left" Height="281" Margin="10,129,0,0"  VerticalAlignment="Top" Width="326" SelectionChanged="LstbxMembers_SelectionChanged" ItemsSource="{Binding}"/>
-        <ComboBox x:Name="cmbbxFilterMembers" HorizontalAlignment="Left" Margin="184,88,0,0" VerticalAlignment="Top" Width="152" Height="26"/>
+        <ComboBox x:Name="cmbbxFilterMembers" HorizontalAlignment="Left" Margin="184,88,0,0" VerticalAlignment="Top" Width="152" Height="26" SelectionChanged="CmbbxFilterMembers_SelectionChanged"/>
         <Label x:Name="lblFiltermembers" Content="Member Type:" HorizontalAlignment="Left" Margin="94,88,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtbkMemberInfo" HorizontalAlignment="Left" Margin="363,129,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="271" Width="411" Background="White"/>
         <TextBox x:Name="txtbxNameSearch" HorizontalAlignment="Left" Height="26" Margin="363,88,0,0" TextWrapping="Wrap" Text="Search by Name" VerticalAlignment="Top" Width="187" FontSize="14"/>

@@ -36,5 +36,16 @@ namespace LabNine
         {
             return string.Format(Name);
         }
+
+        //Methods
+        public String DisplayMemberDetails()
+        {
+            return String.Format("{0}\t\t{1}\n{2}\t\t{3}\n{4}\t\t{5}\n{6}\t{7}\n{8}\t{9}",
+                "Name:", Name,
+                "Phone:",Phone,
+                "Address:",Address,
+                "Member Type:",Type.ToString(),
+                "Year Joined:",Year);
+        }
     }
 }

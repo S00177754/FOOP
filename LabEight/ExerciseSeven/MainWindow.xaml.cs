@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.Win32;
 
 using System.Diagnostics;
+using System.Collections;
 
 namespace ExerciseSeven
 {
@@ -179,6 +180,26 @@ namespace ExerciseSeven
         {
             Export("All");
         }
+
+        private void ListbxPLayerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listbxPLayerList.SelectedItem != null)
+            {
+                int selectedIndex = listbxPLayerList.SelectedIndex;
+
+                //Data fields filled by following chunk of code.
+                lblPlayerName.Content = $"Name: {players[selectedIndex].Name}";
+                txtblkClass.Text = (players[selectedIndex].Class).ToString();
+                txtblkRace.Text = (players[selectedIndex].Race).ToString();
+                txtblkAC.Text = (players[selectedIndex].AC).ToString();
+                txtblkMaxHealth.Text = (players[selectedIndex].MaxHealth).ToString();
+                txtblkHealth.Text = (players[selectedIndex].Health).ToString();
+            }
+            else
+            {
+                lblPlayerName.Content = "Name:";
+            }
+        }
     }
 
     public class Player
@@ -224,5 +245,7 @@ namespace ExerciseSeven
         {
             return string.Format($"{Name},{Class},{Race},{AC},{MaxHealth},{Health}");
         }
+
+        
     }
 }

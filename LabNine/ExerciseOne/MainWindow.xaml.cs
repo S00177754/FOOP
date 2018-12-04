@@ -55,12 +55,22 @@ namespace ExerciseOne
             lstbxMovies.ItemsSource = MovieList;
 
             //Set Timer
-            DispatcherTimer timer = new DispatcherTimer();
-            //timer.Tick += timerTick;
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Start();
+            DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
 
             cmbbxRating.ItemsSource =new int[] { 1,2,3,4,5};
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current second
+            var date = DateTime.Now;
+            txbkTime.Text = string.Format("{0:HH:mm:ss}",date);
+
+            // Forcing the CommandManager to raise the RequerySuggested event
+            CommandManager.InvalidateRequerySuggested();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -185,6 +195,24 @@ namespace ExerciseOne
                     sw.Write(json);
                 }
             }
+        }
+
+        private void TxbxSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lstbxMovies.ItemsSource = FilterMovies(txbxSearchBar.Text);
+        }
+
+        private ObservableCollection<Movie> FilterMovies(string movieName)
+        {
+            ObservableCollection<Movie> temp = new ObservableCollection<Movie>();
+            foreach (Movie m in MovieList)
+            {
+                if (m.Title.ToUpper().StartsWith(movieName.ToUpper()))
+                {
+                    temp.Add(m);
+                }
+            }
+            return temp;
         }
     }
 }

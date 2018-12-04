@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +40,7 @@ namespace LabTen
             Products = new ObservableCollection<Bike>();
             Cart = new ObservableCollection<Bike>();
             Filter = new ObservableCollection<Bike>();
-
+            
             lstbxCart.ItemsSource = Cart;
             lstbxProducts.ItemsSource = Products;
             cmbbxBikeType.ItemsSource = Filter;
@@ -49,6 +51,10 @@ namespace LabTen
             Bike bk4 = new Bike(1233, "Adventure", 200.01, "Female");
             Bike bk5 = new Bike(0728, "Hybrid Bike", 150, "Female");
             Bike bk6 = new Bike(0729, "Hybrid Bike", 150, "Male");
+
+            string[] bikeVariations = { "All", "Male", "Female" };
+            cmbbxBikeType.ItemsSource = bikeVariations;
+            cmbbxBikeType.SelectedIndex = 0;
 
             Products.Add(bk5);
             Products.Add(bk6);
@@ -64,11 +70,12 @@ namespace LabTen
 
         private void BtnAddToCart_Click(object sender, RoutedEventArgs e)
         {
-            if (lstbxProducts.SelectedItem != null)
+            Bike selectedProduct = lstbxProducts.SelectedItem as Bike;
+
+            if (selectedProduct != null)
             {
-                Bike temp = lstbxProducts.SelectedItem as Bike;
-                TotalCost += temp.Cost;
-                Cart.Add(temp);
+                TotalCost += selectedProduct.Cost;
+                Cart.Add(selectedProduct);
                 txbkTotalCost.Text = $"Total Cost:{TotalCost}";
             }
 
@@ -76,13 +83,48 @@ namespace LabTen
 
         private void BtnRemoveFromCart_Click(object sender, RoutedEventArgs e)
         {
-            if (lstbxCart.SelectedItem != null)
+            Bike selectedProduct = lstbxCart.SelectedItem as Bike;
+            
+
+            if (selectedProduct != null)
             {
-                Bike temp = lstbxProducts.SelectedItem as Bike;
-                TotalCost -= temp.Cost;
-                Cart.Remove((Bike)lstbxCart.SelectedItem);
+                TotalCost -= selectedProduct.Cost;
+                Cart.Remove(selectedProduct);
                 txbkTotalCost.Text = $"Total Cost:{TotalCost}";
             }
+            else
+            {      
+                Debug.WriteLine("Error - Null");
+                
+            }
+            Debug.WriteLine("Items Left:" + lstbxCart.Items.Count);
+            Debug.WriteLine("Items Left:" + Cart.Count);
+        }
+
+        private ObservableCollection<Bike> FilterProducts(string bikeVariation)
+        {
+            ObservableCollection<Bike> temp = new ObservableCollection<Bike>();
+            foreach (Bike b in Products)
+            {
+                if (b.Gender.Equals(bikeVariation))
+                {
+                    temp.Add(b);
+                }
+            }
+            return temp;
+        }
+
+        
+
+        private void CmbbxBikeType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string bikeVariation = cmbbxBikeType.SelectedValue.ToString();
+            if (bikeVariation.Equals("All"))
+                lstbxProducts.ItemsSource = Products;
+            else if (bikeVariation.Equals("Male"))
+                lstbxProducts.ItemsSource = FilterProducts("Male");
+            else if (bikeVariation.Equals("Female"))
+                lstbxProducts.ItemsSource = FilterProducts("Female");
         }
     }
 }

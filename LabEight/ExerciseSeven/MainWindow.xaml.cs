@@ -17,6 +17,7 @@ using Microsoft.Win32;
 
 using System.Diagnostics;
 using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace ExerciseSeven
 {
@@ -26,12 +27,8 @@ namespace ExerciseSeven
     public partial class MainWindow : Window
     {
         //Variables
-        List<Player> players = new List<Player>();
+        ObservableCollection<Player> PlayerList = new ObservableCollection<Player>();
         
-        
-        //brush.ImageSource = new BitmapImage(new Uri("Images/ContentImage.png", UriKind.Relative));
-        
-
         public MainWindow()
         {
             InitializeComponent();
@@ -43,8 +40,7 @@ namespace ExerciseSeven
         {
             if (txtboxAddPlayer.Text != null && txtboxAddPlayer.Text != "")
             {
-                listbxPLayerList.Items.Add(txtboxAddPlayer.Text);
-                players.Add(new Player(txtboxAddPlayer.Text));
+                PlayerList.Add(new Player(txtboxAddPlayer.Text));
             }
         }
 
@@ -55,7 +51,7 @@ namespace ExerciseSeven
             {
                 int selectedIndex = listbxPLayerList.SelectedIndex;
                 listbxPLayerList.Items.RemoveAt(selectedIndex);
-                players.RemoveAt(selectedIndex);
+                PlayerList.RemoveAt(selectedIndex);
             }
         }
 
@@ -67,12 +63,12 @@ namespace ExerciseSeven
                 int selectedIndex = listbxPLayerList.SelectedIndex;
 
                 //Data fields filled by following chunk of code.
-                lblPlayerName.Content = $"Name: {players[selectedIndex].Name}";
-                txtblkClass.Text = (players[selectedIndex].Class).ToString();
-                txtblkRace.Text = (players[selectedIndex].Race).ToString();
-                txtblkAC.Text = (players[selectedIndex].AC).ToString();
-                txtblkMaxHealth.Text = (players[selectedIndex].MaxHealth).ToString();
-                txtblkHealth.Text = (players[selectedIndex].Health).ToString();
+                lblPlayerName.Content = $"Name: {PlayerList[selectedIndex].Name}";
+                txtblkClass.Text = (PlayerList[selectedIndex].Class).ToString();
+                txtblkRace.Text = (PlayerList[selectedIndex].Race).ToString();
+                txtblkAC.Text = (PlayerList[selectedIndex].AC).ToString();
+                txtblkMaxHealth.Text = (PlayerList[selectedIndex].MaxHealth).ToString();
+                txtblkHealth.Text = (PlayerList[selectedIndex].Health).ToString();
             }
             else
             {
@@ -86,7 +82,7 @@ namespace ExerciseSeven
             if (listbxPLayerList.SelectedItem != null)
             {
                 int selectedIndex = listbxPLayerList.SelectedIndex;
-                players[selectedIndex].UpdatePlayer(txtblkClass.Text, txtblkRace.Text, int.Parse(txtblkAC.Text), int.Parse(txtblkMaxHealth.Text), int.Parse(txtblkHealth.Text));
+                PlayerList[selectedIndex].UpdatePlayer(txtblkClass.Text, txtblkRace.Text, int.Parse(txtblkAC.Text), int.Parse(txtblkMaxHealth.Text), int.Parse(txtblkHealth.Text));
             }
         }
 
@@ -113,7 +109,7 @@ namespace ExerciseSeven
                 while(dataInput != null)
                 {
                     dataSet = dataInput.Split(',');
-                    players.Add(new Player(dataSet[0], dataSet[1], dataSet[2], int.Parse(dataSet[3]), int.Parse(dataSet[4]), int.Parse(dataSet[5]) ) );
+                    PlayerList.Add(new Player(dataSet[0], dataSet[1], dataSet[2], int.Parse(dataSet[3]), int.Parse(dataSet[4]), int.Parse(dataSet[5]) ) );
                     listbxPLayerList.Items.Add(dataSet[0]);
                     dataInput = sr.ReadLine();
                     //Debug.WriteLine("Read new line");
@@ -141,14 +137,14 @@ namespace ExerciseSeven
 
                 if (operation == "Single")
                 {
-                    exportLine = players[listbxPLayerList.SelectedIndex].FormatExport();
+                    exportLine = PlayerList[listbxPLayerList.SelectedIndex].FormatExport();
                     sw.WriteLine(exportLine);
                 }
                 else if (operation == "All")
                 {
                     for (int i = 0; i < listbxPLayerList.Items.Count; i++)
                     {
-                        exportLine = players[i].FormatExport();
+                        exportLine = PlayerList[i].FormatExport();
                         sw.WriteLine(exportLine);
                     }
                     
@@ -188,17 +184,22 @@ namespace ExerciseSeven
                 int selectedIndex = listbxPLayerList.SelectedIndex;
 
                 //Data fields filled by following chunk of code.
-                lblPlayerName.Content = $"Name: {players[selectedIndex].Name}";
-                txtblkClass.Text = (players[selectedIndex].Class).ToString();
-                txtblkRace.Text = (players[selectedIndex].Race).ToString();
-                txtblkAC.Text = (players[selectedIndex].AC).ToString();
-                txtblkMaxHealth.Text = (players[selectedIndex].MaxHealth).ToString();
-                txtblkHealth.Text = (players[selectedIndex].Health).ToString();
+                lblPlayerName.Content = $"Name: {PlayerList[selectedIndex].Name}";
+                txtblkClass.Text = (PlayerList[selectedIndex].Class).ToString();
+                txtblkRace.Text = (PlayerList[selectedIndex].Race).ToString();
+                txtblkAC.Text = (PlayerList[selectedIndex].AC).ToString();
+                txtblkMaxHealth.Text = (PlayerList[selectedIndex].MaxHealth).ToString();
+                txtblkHealth.Text = (PlayerList[selectedIndex].Health).ToString();
             }
             else
             {
                 lblPlayerName.Content = "Name:";
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            listbxPLayerList.ItemsSource = PlayerList;
         }
     }
 

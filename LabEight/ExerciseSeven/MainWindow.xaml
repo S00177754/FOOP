@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExerciseSeven"
         mc:Ignorable="d"
         Icon="Images\DnD.png"
-        Title="DnD Player Library" Height="450" Width="921.6" ResizeMode="NoResize">
+        Title="DnD Player Library" Height="450" Width="921.6" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid x:Name="imgAddPlayer">
         <!--Background Image-->
         <Image x:Name="imgBackground" HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="915" Source="Images/background.jpg" Stretch="Fill"/>

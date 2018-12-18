@@ -47,11 +47,9 @@ namespace ExerciseSeven
         //Deletes and removes player from list 
         private void BtnDeletePlayer_Click(object sender, RoutedEventArgs e)
         {
-            if(listbxPLayerList.SelectedItem != null)
+            if (listbxPLayerList.SelectedItem != null)
             {
-                int selectedIndex = listbxPLayerList.SelectedIndex;
-                listbxPLayerList.Items.RemoveAt(selectedIndex);
-                PlayerList.RemoveAt(selectedIndex);
+                PlayerList.Remove(listbxPLayerList.SelectedItem as Player);
             }
         }
 
@@ -247,6 +245,9 @@ namespace ExerciseSeven
             return string.Format($"{Name},{Class},{Race},{AC},{MaxHealth},{Health}");
         }
 
-        
+        public override string ToString()
+        {
+            return string.Format($"{Name}");
+        }
     }
 }

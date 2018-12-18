@@ -207,7 +207,7 @@ namespace ExerciseOne
             ObservableCollection<Movie> temp = new ObservableCollection<Movie>();
             foreach (Movie m in MovieList)
             {
-                if (m.Title.ToUpper().StartsWith(movieName.ToUpper()))
+                if (m.Title.ToUpper().Contains(movieName.ToUpper()))
                 {
                     temp.Add(m);
                 }

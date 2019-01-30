@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace WeekOne
 {
@@ -157,6 +159,23 @@ namespace WeekOne
         private void CmbBxGenre_DropDownClosed(object sender, EventArgs e)
         {
             GenreSort();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Band temp = lstBxBands.SelectedItem as Band;
+            
+            if(temp != null)
+            {
+                string output = JsonConvert.SerializeObject(temp);
+                string path = @"BandName.txt";
+
+                using(StreamWriter sr = File.AppendText(path) )
+                {
+                    sr.WriteLine(output);
+                    sr.Close();
+                }
+            }
         }
     }
 }

@@ -58,6 +58,8 @@ namespace WeekOne
             info = $"Formed: {YearFormed} \nMembers: {info}";
             return info;
         }
+
+        
     }
 
     class PopBand : Band

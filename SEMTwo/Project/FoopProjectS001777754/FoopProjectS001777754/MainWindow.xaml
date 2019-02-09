@@ -1,0 +1,28 @@
+﻿<Window x:Class="FoopProjectS001777754.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoopProjectS001777754"
+        mc:Ignorable="d"
+        Title="Let's Cook!" Height="720" Width="1080" Background="White" Icon="Images/ChefsHat.ico" >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="119*"/>
+            <RowDefinition Height="121*"/>
+            <RowDefinition Height="450*"/>
+        </Grid.RowDefinitions>
+        <Image Source="Images\CheckerPattern.png" Stretch="Fill" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="3" Margin="0,0,-6.133,-29.6"/>
+        <Image Source="Images\MenuBar.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="50,20,9.867,19.2" Stretch="Fill"/>
+        <Image Source="Images\LetsCookLogo@4x.png" Grid.Column="0" Grid.Row="0" Margin="5,5,4.933,4.2"/>
+
+    </Grid>
+</Window>

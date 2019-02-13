@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace FoopProjectS001777754
 {
@@ -20,9 +21,22 @@ namespace FoopProjectS001777754
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer dt = new DispatcherTimer();
+        public string Time { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            dt.Tick += new EventHandler(dt_Tick);
+            dt.Interval = new TimeSpan(0, 0, 1);
+            dt.Start();
+        }
+
+        public void dt_Tick(object sender, EventArgs e)
+        {
+            Time = DateTime.Now.ToLongTimeString();
+            txblkTimer.Text = Time;
         }
     }
 }

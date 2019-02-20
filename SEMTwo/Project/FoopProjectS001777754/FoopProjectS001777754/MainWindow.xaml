@@ -21,9 +21,9 @@
             <RowDefinition Height="121*"/>
             <RowDefinition Height="330*"/>
         </Grid.RowDefinitions>
-        
+
         <Image Source="Images\CheckerPattern.png" Stretch="Fill" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="0,0,-0.133,0.4"/>
-        
+
         <!-- Navbar ########################################################## -->
         <Image Source="Images\MenuBar.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="50,20,9.867,19.2" Stretch="Fill"/>
         <Image Source="Images\LetsCookLogo@4x.png" Grid.Column="0" Grid.Row="0" Margin="5,5,4.933,4.2"/>
@@ -34,8 +34,12 @@
             <ListBox Name="lstbxRecipes" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Transparent" Margin="0,100,0,0" BorderBrush="#00ABADB3"/>
         </Border>
         <Image Source="Images/SearchBox.png" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1" />
-        <TextBox Name="txbxSearchRecipe" Background="Transparent" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="65,35,65,50" BorderBrush="#00ABADB3"/>
-    
-    <!-- Recipie Display Area -->
+        <TextBox Name="txbxSearchRecipe" Background="Transparent" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="65,39.8,64.867,50" BorderBrush="#00ABADB3" BorderThickness="0" FontSize="20" Foreground="White" TextAlignment="Center"/>
+
+        <!-- Recipie Display Area #######################################-->
+        <Border Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" BorderBrush="Red" BorderThickness="5" Margin="10">
+            <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" Background="AntiqueWhite" />
+        </Border>
+
     </Grid>
 </Window>

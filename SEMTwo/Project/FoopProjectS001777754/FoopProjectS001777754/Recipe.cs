@@ -10,6 +10,7 @@ namespace FoopProjectS001777754
     {
         //Variables
         public string Name { get; private set; }
+        public string ImageFilePath { get; set; }
         public TimeSpan CookingTime { get; private set; }
         public TimeSpan PrepTime { get; private set; }
         public TimeSpan TotalTime { get { return CookingTime + PrepTime; } }

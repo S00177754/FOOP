@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0580CE51-B3CE-41CF-8410-666F0BFE5AC4}</ProjectGuid>
+    <ProjectGuid>{A1D022CC-C6C5-4035-ACEB-64155240E863}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FoopProjectS001777754</RootNamespace>
-    <AssemblyName>FoopProjectS001777754</AssemblyName>
+    <RootNamespace>CA1_Sem4</RootNamespace>
+    <AssemblyName>CA1_Sem4</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,23 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CookingMode.xaml.cs">
-      <DependentUpon>CookingMode.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MealPlanner.xaml.cs">
-      <DependentUpon>MealPlanner.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeBinder.xaml.cs">
-      <DependentUpon>RecipeBinder.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ShoppingList.xaml.cs">
-      <DependentUpon>ShoppingList.xaml</DependentUpon>
-    </Compile>
-    <Page Include="CookingMode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Task.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,18 +68,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MealPlanner.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RecipeBinder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ShoppingList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,21 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\CheckerPattern.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\LetsCookLogo%404x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\MenuBar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\ChefsHat.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\SearchBox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

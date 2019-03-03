@@ -38,5 +38,25 @@ namespace FoopProjectS001777754
             Time = DateTime.Now.ToLongTimeString();
             txblkTimer.Text = Time;
         }
+
+        private void TxBlkRecipeBinder_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Uri("RecipeBinder.xaml", UriKind.Relative));
+        }
+
+        private void TxBlkShoppingList_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Uri("ShoppingList.xaml", UriKind.Relative));
+        }
+
+        private void TxBlkMealPlanner_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Uri("MealPlanner.xaml", UriKind.Relative));
+        }
+
+        private void TxBlkCookingMode_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Uri("CookingMode.xaml", UriKind.Relative));
+        }
     }
 }

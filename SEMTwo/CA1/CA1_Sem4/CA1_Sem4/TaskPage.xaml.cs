@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace CA1_Sem4
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TaskPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TaskPage : Page
     {
-        public MainWindow()
+        public TaskPage()
         {
             InitializeComponent();
-            
         }
     }
 }

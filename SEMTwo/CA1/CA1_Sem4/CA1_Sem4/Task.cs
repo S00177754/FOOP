@@ -55,10 +55,19 @@ namespace CA1_Sem4
                     break;
             }
         }
+        public Task(string title, string description, TaskCategory category, DateTime dueDate, PriorityLevel priority, string labels, string responsibility,string complete) : this(title, description, category, dueDate, priority, labels, responsibility)
+        {
+            complete = Completed;
+        }
 
         public void CompleteTask()
         {
+            if(Completed == "Not Completed")
             Completed = "Completed";
+            else
+            {
+                Completed = "Not Completed";
+            }
         }
 
         public int CompareTo(object obj)

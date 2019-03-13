@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CA1_Sem4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="BlanchedAlmond">
+        Title="MainWindow" Height="475.803" Width="800" Background="BlanchedAlmond">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23*"/>
@@ -44,37 +44,39 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Name="LblTitle" Content="Title:" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" FontSize="10" Margin="0,0,0.2,0.4"/>
+                    <Label Name="LblTitle" Content="Title:" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" FontSize="9" Margin="0,0,0.2,0.4"/>
                     <TextBox Name="TxtBkTitle" Grid.Row="1" Grid.Column="0" Margin="5,0.6,4.2,0.8" Grid.ColumnSpan="2"/>
 
-                    <Label Name="LblDescription" Content="Description:" Grid.Column="0" Grid.Row="2" FontSize="10" Grid.ColumnSpan="2" Margin="0,0.2,0.2,0.2"/>
+                    <Label Name="LblDescription" Content="Description:" Grid.Column="0" Grid.Row="2" FontSize="9" Grid.ColumnSpan="2" Margin="0,0.2,0.2,0.2"/>
                     <TextBox Name="TxtBkDescription" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Margin="5,3.8,5.2,4" Grid.ColumnSpan="2"/>
 
-                    <Label Name="LblCategory" Content="Category:" Grid.Column="0" Grid.Row="5" FontSize="10" Grid.ColumnSpan="2" Margin="0,0,126.2,0.4"/>
-                    <ComboBox Name="CmbBxCategory" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="1,1.6,1.2,1.8" />
+                    <Label Name="LblCategory" Content="Category:" Grid.Column="0" Grid.Row="5" FontSize="9" Grid.ColumnSpan="2"/>
+                    <ComboBox Name="CmbBxCategory" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0"/>
 
-                    <Label Name="LblDueDate" Content="Due Date:" Grid.Column="0" Grid.Row="7" FontSize="10" Grid.ColumnSpan="2" Margin="0,0.2,0.2,0.2"/>
-                    <DatePicker Name="DatePckEvent" Grid.Row="8" HorizontalAlignment="Center" Grid.ColumnSpan="2" Width="200" />
+                    <Label Name="LblDueDate" Content="Due Date:" Grid.Column="0" Grid.Row="7" FontSize="9" Grid.ColumnSpan="2" Margin="0,0.2,0.2,0.2"/>
+                    <DatePicker Name="DatePckEvent" Grid.Row="8" HorizontalAlignment="Center" Grid.ColumnSpan="2" Width="210" />
 
 
-                    <Label Name="LblPriority" Content="Priority:" Grid.Column="0" Grid.Row="9" FontSize="10" Grid.ColumnSpan="2" Margin="0,0.4,126.2,0"/>
-                    <ComboBox Name="CmbBxPriority" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Margin="1,2,1.2,2.4" />
+                    <Label Name="LblPriority" Content="Priority:" Grid.Column="0" Grid.Row="9" FontSize="9" Grid.ColumnSpan="2" Margin="0,0.4,126.2,0"/>
+                    <ComboBox Name="CmbBxPriority" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"  Margin="5,0" />
 
                     <Label Name="LblLabels" Content="Labels:" Grid.Column="0" Grid.Row="11" FontSize="10" Grid.ColumnSpan="2" Margin="0,0.6,0.2,22.2" Grid.RowSpan="2"/>
                     <TextBox Name="TxtBkLabels" Grid.Row="12" Grid.Column="0" Margin="5,2.2,5.2,2.2" Grid.ColumnSpan="2"/>
 
                     <Label Name="LblUser" Content="Assigned To:" Grid.Column="0" Grid.Row="12" FontSize="9" Grid.ColumnSpan="2" Margin="0,22.2,126.2,0.4" Grid.RowSpan="2"/>
-                    <ComboBox Name="CmbBxUser" Grid.Row="13" Grid.Column="1" Margin="0.8,1.8,6,2.4" />
+                    <ComboBox Name="CmbBxUser" Grid.Row="13" Grid.Column="1"  Margin="5,0" />
 
 
-                    <Button Name="BtnAddEvent" Content="Add Event" Grid.Row="14" Grid.ColumnSpan="2" Margin="10,1.6,10.2,1.8"/>
+                    <Button Name="BtnAddEvent" Content="Add Event" Click="BtnAddEvent_Click" Grid.Row="14" Grid.ColumnSpan="2" Margin="10,1.6,10.2,1.8"/>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="User List" Name="TbItmUserList">
+            <TabItem Header="Settings" Name="TbItmUserList" Height="22" Margin="-2.4,-2,-1.8,0" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="248*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
                         <RowDefinition Height="30*"/>
                         <RowDefinition Height="30*"/>
                         <RowDefinition Height="30*"/>
@@ -84,11 +86,42 @@
                     <Button Content="Add User" Name="BtnAddUser" Grid.Column="0" Grid.Row="1" Margin="5,3" />
                     <Button Content="Edit User" Name="BtnEditUser" Grid.Column="0" Grid.Row="2" Margin="5,3" />
                     <Button Content="Remove User" Name="BtnRemoveUser" Grid.Column="0" Grid.Row="3" Margin="5,3" />
+                    
+                    <StackPanel Orientation="Horizontal" Name="StkPnlData" Grid.Column="0" Grid.Row="5" Margin="3">
+                        <Button Name="BtnSaveData" Content="Save Data" Width="100" />
+                        <Button Name="BtnLoadData" Content="Load Data" Width="100" Margin="15,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Filter Events" Name="TbItmFilters">
+                <Grid Background="#FFE5E5E5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Name="LblFilterCategory" Content="Category:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox Name="CmbBxFilterCategory" Grid.Column="1" Grid.Row="0" Margin="3,5"/>
+
+                    <Label Name="LblFilterUser" Content="User::" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                    <ComboBox Name="CmbBxFilterUser" Grid.Column="1" Grid.Row="1" Margin="3,5"/>
+                    
                 </Grid>
             </TabItem>
         </TabControl>
 
         <!-- Event View Area -->
-        <Frame Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <Frame Name="FrmTaskList" Grid.Column="1" Grid.Row="1" Margin="9.8,10.4,9.6,10" Source="TaskPage.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

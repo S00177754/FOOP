@@ -4,25 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CA1_Sem4"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TaskPage">
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="TaskPage" Height="382.925">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="264*"/>
+            <ColumnDefinition Width="267*"/>
+            <ColumnDefinition Width="269*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="127*"/>
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
-        <ListBox Name="LstBxTasks" Grid.Row="0" Margin="5">
+
+        <ListBox Name="LstBxTasks" Grid.Row="0" Margin="5,5,5,4.8" SelectionChanged="LstBxTasks_SelectionChanged" Grid.ColumnSpan="3">
             <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Background="{Binding Path=BackgroundColor}">
-                        <TextBlock Text="{Binding Path=Title}" />
-                        <TextBlock Text="{Binding Path=Date}"/>
-                        <TextBlock Text="{Binding Path=Completed}"/>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                        <TextBlock Text="{Binding Path=Title}"  Margin="10,0"/>
+                        <TextBlock Text="{Binding Path=Date}" Margin="10,0"/>
+                        <TextBlock Text="{Binding Path=Completed}" Margin="10,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <Button Name="BtnEditTask" Click="BtnEditTask_Click"  Height="30" Margin="10" Content="Edit Task" Grid.Column="0" Grid.Row="1"/>
+        <Button Name="BtnRemoveTask" Click="BtnRemoveTask_Click"  Height="30" Margin="10" Content="Remove Task" Grid.Column="1" Grid.Row="1"/>
+        <Button Name="BtnCompleteTask" Click="BtnCompleteTask_Click" Height="30" Margin="10" Content="Complete Task" Grid.Column="2" Grid.Row="1"/>
+
     </Grid>
 </Page>

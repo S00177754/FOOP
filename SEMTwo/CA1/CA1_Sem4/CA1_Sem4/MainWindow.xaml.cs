@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace CA1_Sem4
 {
@@ -23,6 +28,8 @@ namespace CA1_Sem4
     {
         static public ObservableCollection<Task> taskList = new ObservableCollection<Task>();
         static public ObservableCollection<string> UserList = new ObservableCollection<string>();
+        static public ObservableCollection<string> LabelList = new ObservableCollection<string>();
+        DispatcherTimer dt = new DispatcherTimer();
 
         public MainWindow()
         {
@@ -33,6 +40,13 @@ namespace CA1_Sem4
 
         private void InitializeApp()
         {
+            foreach (var task in taskList)
+            {
+                if (!UserList.Contains(task.Responsibility))
+                {
+                    UserList.Add(task.Responsibility);
+                }
+            }
             UserList.Add("None");
 
             CmbBxCategory.ItemsSource = Enum.GetValues(typeof(TaskCategory));
@@ -41,9 +55,27 @@ namespace CA1_Sem4
             CmbBxCategory.SelectedIndex = 0;
             CmbBxPriority.SelectedIndex = 0;
             CmbBxUser.SelectedIndex = 0;
+            LabelList.Add("None");
+            UpdateList();
 
-           
+            //Filters
+            CmbBxFilterCategory.ItemsSource = Enum.GetValues(typeof(TaskCategory));
+            CmbBxFilterPriority.ItemsSource = Enum.GetValues(typeof(PriorityLevel));
+            CmbBxFilterUser.ItemsSource = UserList;
+            CmbBxFilterLabelOne.ItemsSource = LabelList;
+            CmbBxFilterLabelTwo.ItemsSource = LabelList;
+            CmbBxFilterLabelThree.ItemsSource = LabelList;
 
+            CmbBxFilterCategory.SelectedIndex = 0;
+            CmbBxFilterPriority.SelectedIndex = 0;
+            CmbBxFilterUser.SelectedIndex = 0;
+            CmbBxFilterLabelOne.SelectedIndex = 0;
+            CmbBxFilterLabelTwo.SelectedIndex = 0;
+            CmbBxFilterLabelThree.SelectedIndex = 0;
+
+            dt.Tick += new EventHandler(dt_Tick);
+            dt.Interval = new TimeSpan(0, 0, 1);
+            dt.Start();  
         }
 
         private void BtnAddEvent_Click(object sender, RoutedEventArgs e)
@@ -98,10 +130,133 @@ namespace CA1_Sem4
             {
                 taskList.Add(new Task(
                     TxtBkTitle.Text, TxtBkDescription.Text, category, DatePckEvent.SelectedDate.HasValue == true ? (DateTime)DatePckEvent.SelectedDate : new DateTime(),
-                    priority, TxtBkLabels.Text, CmbBxUser.Text));
+                    priority,null, TxtBkLabels.Text, CmbBxUser.Text));
+            }
+
+            UpdateList();
+        }
+
+        public void dt_Tick(object sender, EventArgs e)
+        {
+            LblClock.Content = DateTime.Now.ToLongTimeString();
+        }
+
+        //User List Field
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddUser newUser = new AddUser();
+            newUser.ShowDialog();
+            LstBxUsers.ItemsSource = null;
+            LstBxUsers.ItemsSource = UserList;
+        }
+
+        private void BtnRemoveUser_Click(object sender, RoutedEventArgs e)
+        {
+            if(LstBxUsers.SelectedItem != null)
+            {
+                UserList.Remove(LstBxUsers.SelectedItem as string);
+                LstBxUsers.ItemsSource = null;
+                LstBxUsers.ItemsSource = UserList;
             }
         }
 
-       
+
+        //Save and loading of data
+        private void BtnSaveData_Click(object sender, RoutedEventArgs e)
+        {
+            string JSON = JsonConvert.SerializeObject(taskList);
+            SaveFileDialog saveFile = new SaveFileDialog();
+
+            if(saveFile.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFile.FileName,JSON);
+            }
+        }
+
+        private void BtnLoadData_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+
+            if (openFile.ShowDialog() == true)
+            {
+                var fileStream = openFile.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    string content = reader.ReadToEnd();
+                    taskList = JsonConvert.DeserializeObject<ObservableCollection<Task>>(content);
+                }
+
+                foreach (var task in taskList)
+                {
+                    if (!UserList.Contains(task.Responsibility))
+                    {
+                        UserList.Add(task.Responsibility);
+                    }
+                }
+                LstBxUsers.ItemsSource = null;
+                LstBxUsers.ItemsSource = UserList;
+                UpdateList();
+                TaskPage.TaskRefresh();
+            }
+            else
+            {
+                throw new Exception("Path Not Found");
+            }
+        }
+
+        //Search bar
+        private void TxtBxTaskSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(TxtBxTaskSearch.Text == "Search")
+            {
+                TxtBxTaskSearch.Text = "";
+            }            
+        }
+
+        private void TxtBxTaskSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TxtBxTaskSearch.Text.ToUpper() == "" || TxtBxTaskSearch.Text.ToUpper() == " ")
+            {
+                TaskPage.lstbxTasks.ItemsSource = null;
+                TaskPage.lstbxTasks.ItemsSource = taskList;
+            }
+            else
+            {
+                ObservableCollection<Task> temp = new ObservableCollection<Task>();
+                foreach (var tsk in taskList)
+                {
+                    if (tsk.Description.ToUpper().Contains(TxtBxTaskSearch.Text.ToUpper()) || tsk.Title.ToUpper().Contains(TxtBxTaskSearch.Text.ToUpper()))
+                    {
+                        temp.Add(tsk);
+                    }
+                }
+
+                if (TaskPage.lstbxTasks != null)
+                {
+                    TaskPage.lstbxTasks.ItemsSource = null;
+                    TaskPage.lstbxTasks.ItemsSource = temp;
+                }
+            }
+        }
+
+        private void BtnFilterSearch_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        //Update label methods
+        public void UpdateList()
+        {
+            foreach (var task in taskList)
+            {
+                foreach (var lbl in task.Labels)
+                {
+                    if (!LabelList.Contains(lbl))
+                        LabelList.Add(lbl);
+                }
+            }
+        }
     }
 }
+

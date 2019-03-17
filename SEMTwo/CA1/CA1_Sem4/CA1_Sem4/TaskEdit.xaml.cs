@@ -109,7 +109,7 @@ namespace CA1_Sem4
                 temp = "Not Completed";
             }
             Debug.WriteLine(temp);
-            MainWindow.taskList.Add(new Task(TxtBkTitle.Text, TxtBkDescription.Text, category, DatePckEvent.DisplayDate, priority, TxtBkLabels.Text, CmbBxUser.Text,temp));
+            MainWindow.taskList.Add(new Task(TxtBkTitle.Text, TxtBkDescription.Text, category, DatePckEvent.DisplayDate, priority, null, TxtBkLabels.Text, CmbBxUser.Text,temp));
             TaskPage.TaskRefresh();
             Debug.WriteLine("Apply Change");
             this.Close();

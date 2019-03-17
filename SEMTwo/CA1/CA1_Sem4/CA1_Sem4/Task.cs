@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ using System.Windows.Media;
 namespace CA1_Sem4
 {
     public enum TaskCategory { Misc, Birthday, School, Work, Personal };
-    public enum PriorityLevel { Low, Medium, High, Urgent };
+    public enum PriorityLevel {None, Low, Medium, High, Urgent };
+    
 
     public class Task : IComparable
     {
@@ -21,11 +23,11 @@ namespace CA1_Sem4
         public PriorityLevel Priority { get; set; }
         public List<string> Labels { get; set; }
         public string Responsibility { get; set; }
+        public string ImagePath { get; set; }
         public string Completed { get; set; } = "Not Completed";
-        public SolidColorBrush BackgroundColor { get; set; }
 
         //Constructor
-        public Task(string title,string description,TaskCategory category,DateTime dueDate,PriorityLevel priority, string labels,string responsibility)
+        public Task(string title,string description,TaskCategory category,DateTime dueDate,PriorityLevel priority,string imagePath, string labels,string responsibility)
         {
             Title = title;
             Description = description;
@@ -36,28 +38,28 @@ namespace CA1_Sem4
             Responsibility = responsibility;
             Labels = new List<string>();
             Labels = (labels.Split(',')).ToList<string>();
+            ImagePath = imagePath;
 
-            
-
-            switch (Priority)
-            {
-                case PriorityLevel.Low:
-                    BackgroundColor = Brushes.White;
-                    break;
-                case PriorityLevel.Medium:
-                    BackgroundColor = Brushes.Yellow;
-                    break;
-                case PriorityLevel.High:
-                    BackgroundColor = Brushes.Orange;
-                    break;
-                case PriorityLevel.Urgent:
-                    BackgroundColor = Brushes.DarkRed;
-                    break;
-            }
         }
-        public Task(string title, string description, TaskCategory category, DateTime dueDate, PriorityLevel priority, string labels, string responsibility,string complete) : this(title, description, category, dueDate, priority, labels, responsibility)
+        public Task(string title, string description, TaskCategory category, DateTime dueDate, PriorityLevel priority,string imgPth, string labels, string responsibility,string complete) : this(title, description, category, dueDate, priority,imgPth, labels, responsibility)
         {
-            complete = Completed;
+            Completed = complete;
+        }
+        
+        [JsonConstructor]
+        public Task(string title, string description, TaskCategory category, DateTime dueDate,string date, PriorityLevel priority, List<string> labels, string responsibility, string imgPth, string complete)
+        {
+            //JSON
+            Title = title;
+            Description = description;
+            Category = category;
+            DueDate = dueDate;
+            Date = DueDate.ToShortDateString();
+            Priority = priority;
+            Labels = labels;
+            Responsibility = responsibility;
+            ImagePath = imgPth;
+            Completed = complete;
         }
 
         public void CompleteTask()
@@ -75,4 +77,6 @@ namespace CA1_Sem4
             return DueDate.CompareTo(obj);
         }
     }
+
+    
 }

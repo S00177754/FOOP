@@ -71,7 +71,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Settings" Name="TbItmUserList" Height="22" Margin="-2.4,-2,-1.8,0" VerticalAlignment="Top">
+            <TabItem Header="Settings" Name="TbItmUserList" Height="22" Margin="-2.4,0,-2.2,-0.4" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="248*"/>
@@ -82,14 +82,13 @@
                         <RowDefinition Height="30*"/>
                     </Grid.RowDefinitions>
 
-                    <ListBox Name="LstBxUsers" Grid.Column="0" Grid.Row="0" Margin="5" />
-                    <Button Content="Add User" Name="BtnAddUser" Grid.Column="0" Grid.Row="1" Margin="5,3" />
-                    <Button Content="Edit User" Name="BtnEditUser" Grid.Column="0" Grid.Row="2" Margin="5,3" />
-                    <Button Content="Remove User" Name="BtnRemoveUser" Grid.Column="0" Grid.Row="3" Margin="5,3" />
+                    <ListBox Name="LstBxUsers" Grid.Column="0" Grid.Row="0" Margin="5" Grid.RowSpan="2"/>
+                    <Button Content="Add User" Name="BtnAddUser" Grid.Column="0" Grid.Row="2" Margin="5,3" Click="BtnAddUser_Click" />
+                    <Button Content="Remove User" Name="BtnRemoveUser" Grid.Column="0" Grid.Row="3" Margin="5,3" Click="BtnRemoveUser_Click" />
                     
                     <StackPanel Orientation="Horizontal" Name="StkPnlData" Grid.Column="0" Grid.Row="5" Margin="3">
-                        <Button Name="BtnSaveData" Content="Save Data" Width="100" />
-                        <Button Name="BtnLoadData" Content="Load Data" Width="100" Margin="15,0"/>
+                        <Button Name="BtnSaveData" Content="Save Data" Width="100" Height="21" Margin="0,0,0,-0.2" VerticalAlignment="Bottom" Click="BtnSaveData_Click" />
+                        <Button Name="BtnLoadData" Content="Load Data" Width="100" Margin="15,0" Click="BtnLoadData_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -114,12 +113,33 @@
                     <Label Name="LblFilterCategory" Content="Category:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <ComboBox Name="CmbBxFilterCategory" Grid.Column="1" Grid.Row="0" Margin="3,5"/>
 
-                    <Label Name="LblFilterUser" Content="User::" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                    <Label Name="LblFilterUser" Content="User:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
                     <ComboBox Name="CmbBxFilterUser" Grid.Column="1" Grid.Row="1" Margin="3,5"/>
-                    
+
+                    <Label Name="LblFilterPriority" Content="Priority:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                    <ComboBox Name="CmbBxFilterPriority" Grid.Column="1" Grid.Row="2" Margin="3,5"/>
+
+                    <Label Name="LblFilterStartDate" Content="Start Date:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+                    <DatePicker Name="DatePckStartDate" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+
+                    <Label Name="LblFilterEndDate" Content="End Date:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+                    <DatePicker Name="DatePckEndDate" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+
+                    <Label Name="LblFilterLabels" Content="Labels:" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+                    <ComboBox Name="CmbBxFilterLabelOne" Grid.Row="5" Grid.Column="1" Margin="3,5"/>
+                    <ComboBox Name="CmbBxFilterLabelTwo" Grid.Row="6" Grid.Column="1" Margin="3,5"/>
+                    <ComboBox Name="CmbBxFilterLabelThree" Grid.Row="7" Grid.Column="1" Margin="3,5"/>
+                    <Button Name="BtnFilterSearch" Content="Search Events" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,5" Click="BtnFilterSearch_Click" />
+
                 </Grid>
             </TabItem>
         </TabControl>
+
+        <!-- Task Search -->
+        <StackPanel Name="StkPnlTaskSearch" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <TextBox Name="TxtBxTaskSearch" Width="400" Margin="10" FontSize="18" TextAlignment="Left" Text="Search" GotFocus="TxtBxTaskSearch_GotFocus" TextChanged="TxtBxTaskSearch_TextChanged"/>
+            <Label Name="LblClock" Width="100" Margin="10,5" FontSize="19"/>
+        </StackPanel>
 
         <!-- Event View Area -->
         <Frame Name="FrmTaskList" Grid.Column="1" Grid.Row="1" Margin="9.8,10.4,9.6,10" Source="TaskPage.xaml" NavigationUIVisibility="Hidden"/>

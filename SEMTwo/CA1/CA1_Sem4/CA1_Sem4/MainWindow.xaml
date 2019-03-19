@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CA1_Sem4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="475.803" Width="800" Background="BlanchedAlmond">
+        Title="MainWindow" Height="475.803" Width="800" Background="White">
+    <Window.Resources>
+        <Style x:Name="StyleGrid" TargetType="Grid">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23*"/>
@@ -82,10 +87,11 @@
                         <RowDefinition Height="30*"/>
                     </Grid.RowDefinitions>
 
-                    <ListBox Name="LstBxUsers" Grid.Column="0" Grid.Row="0" Margin="5" Grid.RowSpan="2"/>
+                    <ListBox Name="LstBxUsers" Grid.Column="0" Grid.Row="0" Margin="5" Grid.RowSpan="1"/>
+                    <TextBox Name="TxtBxUserNameInput" Grid.Column="0" Grid.Row="1" Margin="4" GotFocus="TxtBxUserNameInput_GotFocus" />
                     <Button Content="Add User" Name="BtnAddUser" Grid.Column="0" Grid.Row="2" Margin="5,3" Click="BtnAddUser_Click" />
                     <Button Content="Remove User" Name="BtnRemoveUser" Grid.Column="0" Grid.Row="3" Margin="5,3" Click="BtnRemoveUser_Click" />
-                    
+
                     <StackPanel Orientation="Horizontal" Name="StkPnlData" Grid.Column="0" Grid.Row="5" Margin="3">
                         <Button Name="BtnSaveData" Content="Save Data" Width="100" Height="21" Margin="0,0,0,-0.2" VerticalAlignment="Bottom" Click="BtnSaveData_Click" />
                         <Button Name="BtnLoadData" Content="Load Data" Width="100" Margin="15,0" Click="BtnLoadData_Click"/>

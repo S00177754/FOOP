@@ -72,15 +72,33 @@ namespace CA1_Sem4
             }
         }
 
-        private void LstBxTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
 
         static public void TaskRefresh()
         {
             lstbxTasks.ItemsSource = null;
             lstbxTasks.ItemsSource = MainWindow.taskList;
+        }
+
+        private void LstBxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if((lstbxTasks.SelectedItem as Task) != null)
+            {
+                Task view = lstbxTasks.SelectedItem as Task;
+                TxtBkTaskTitle.Text = "Title: " + view.Title;
+                TxtBkTaskDescription.Text = "Description: " + view.Description;
+                TxtBkTaskDate.Text = "Date: " + view.Date;
+                TxtBkTaskCategory.Text = "Category: " + view.Category.ToString();
+                TxtBkTaskCompleted.Text = "Completed: " + view.Completed;
+                TxtBkTaskPriority.Text = "Priority: " + view.Priority.ToString();
+                TxtBkTaskResponsibility.Text = "User: " + view.Responsibility;
+                string labels = "Labels: ";
+                foreach (var item in view.Labels)
+                {
+                    labels += (item + ",");
+                }
+                TxtBkTaskLabels.Text = labels;
+                TbCtrlManagement.SelectedIndex = 1;
+            }
         }
     }
 }

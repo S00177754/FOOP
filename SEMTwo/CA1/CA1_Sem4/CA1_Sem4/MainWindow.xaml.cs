@@ -73,6 +73,9 @@ namespace CA1_Sem4
             CmbBxFilterLabelTwo.SelectedIndex = 0;
             CmbBxFilterLabelThree.SelectedIndex = 0;
 
+            TxtBxUserNameInput.Text = "Enter User Name Here";
+            TxtBxUserNameInput.Foreground = Brushes.Gray;
+
             dt.Tick += new EventHandler(dt_Tick);
             dt.Interval = new TimeSpan(0, 0, 1);
             dt.Start();  
@@ -144,10 +147,14 @@ namespace CA1_Sem4
         //User List Field
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            AddUser newUser = new AddUser();
-            newUser.ShowDialog();
+            if(TxtBxUserNameInput.Text != "Enter User Name Here" || TxtBxUserNameInput.Text != "" || TxtBxUserNameInput.Text != " ")
+            {
+                UserList.Add(TxtBxUserNameInput.Text);
+            }
             LstBxUsers.ItemsSource = null;
             LstBxUsers.ItemsSource = UserList;
+            TxtBxUserNameInput.Text = "Enter User Name Here";
+            TxtBxUserNameInput.Foreground = Brushes.Gray;
         }
 
         private void BtnRemoveUser_Click(object sender, RoutedEventArgs e)
@@ -242,7 +249,51 @@ namespace CA1_Sem4
 
         private void BtnFilterSearch_Click(object sender, RoutedEventArgs e)
         {
-           
+            ObservableCollection<Task> TempList = new ObservableCollection<Task>();
+            foreach (var tsk in taskList)
+            {
+                #region Nested If - Working
+                //if( (TaskCategory)CmbBxFilterCategory.SelectedIndex == tsk.Category || (TaskCategory)CmbBxFilterCategory.SelectedIndex == TaskCategory.Misc)
+                //{
+                //    if ((PriorityLevel)CmbBxFilterPriority.SelectedValue == tsk.Priority || (PriorityLevel)CmbBxFilterPriority.SelectedValue == PriorityLevel.None)
+                //    {
+                //        if (CmbBxFilterUser.SelectedValue as string == tsk.Responsibility || CmbBxFilterUser.SelectedValue as string == "None")
+                //        {
+                //            if (DatePckStartDate.SelectedDate <= tsk.DueDate && DatePckEndDate.SelectedDate >= tsk.DueDate || DatePckStartDate.SelectedDate <= tsk.DueDate && DatePckEndDate.SelectedDate == null
+                //                || DatePckStartDate.SelectedDate == null && DatePckEndDate.SelectedDate >= tsk.DueDate || DatePckStartDate.SelectedDate == null && DatePckEndDate.SelectedDate == null)
+                //            {
+                //                if (tsk.Labels.Contains(CmbBxFilterLabelOne.SelectedValue as string) || CmbBxFilterLabelOne.SelectedValue as string == "None")
+                //                {
+                //                    if (tsk.Labels.Contains(CmbBxFilterLabelTwo.SelectedValue as string) || CmbBxFilterLabelTwo.SelectedValue as string == "None")
+                //                    {
+                //                        if (tsk.Labels.Contains(CmbBxFilterLabelThree.SelectedValue as string) || CmbBxFilterLabelThree.SelectedValue as string == "None")
+                //                        {
+                //                            TempList.Add(tsk);
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+                #endregion
+
+                //Filter logic
+                if (((TaskCategory)CmbBxFilterCategory.SelectedIndex == tsk.Category || (TaskCategory)CmbBxFilterCategory.SelectedIndex == TaskCategory.Misc)
+                    && ((PriorityLevel)CmbBxFilterPriority.SelectedValue == tsk.Priority || (PriorityLevel)CmbBxFilterPriority.SelectedValue == PriorityLevel.None)
+                    && (CmbBxFilterUser.SelectedValue as string == tsk.Responsibility || CmbBxFilterUser.SelectedValue as string == "None")
+                    && (DatePckStartDate.SelectedDate <= tsk.DueDate && DatePckEndDate.SelectedDate >= tsk.DueDate || DatePckStartDate.SelectedDate <= tsk.DueDate && DatePckEndDate.SelectedDate == null
+                    || DatePckStartDate.SelectedDate == null && DatePckEndDate.SelectedDate >= tsk.DueDate || DatePckStartDate.SelectedDate == null && DatePckEndDate.SelectedDate == null)
+                    && (tsk.Labels.Contains(CmbBxFilterLabelOne.SelectedValue as string) || CmbBxFilterLabelOne.SelectedValue as string == "None")
+                    && (tsk.Labels.Contains(CmbBxFilterLabelTwo.SelectedValue as string) || CmbBxFilterLabelTwo.SelectedValue as string == "None")
+                    && (tsk.Labels.Contains(CmbBxFilterLabelThree.SelectedValue as string) || CmbBxFilterLabelThree.SelectedValue as string == "None"))
+                {
+                    TempList.Add(tsk);
+                }
+                TaskPage.lstbxTasks.ItemsSource = null;
+                TaskPage.lstbxTasks.ItemsSource = TempList;
+
+            }
         }
 
         //Update label methods
@@ -256,6 +307,12 @@ namespace CA1_Sem4
                         LabelList.Add(lbl);
                 }
             }
+        }
+
+        private void TxtBxUserNameInput_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TxtBxUserNameInput.Text = "";
+            TxtBxUserNameInput.Foreground = Brushes.Black;
         }
     }
 }

@@ -35,12 +35,16 @@ namespace FoopProjectS001777754
         //Variable
         public double Amount { get; set; }
         public Measurement Type { get; set; }
-        public string ingredientName { get; set; }
+        public string Name { get; set; }
+        public bool AddMe { get; set; }
 
         //Constructor
-        public Ingredient(double amount,Measurement type,string IngredientName)
+        public Ingredient(double amount,Measurement type,string IngredientName,bool addMe)
         {
-
+            Amount = amount;
+            Type = type;
+            Name = IngredientName;
+            AddMe = addMe;
         }
     }
 }

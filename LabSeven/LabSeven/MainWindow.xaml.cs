@@ -43,39 +43,74 @@ namespace LabSeven
         private void LstBxStockLevel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             stock = (StockLevel)LstBxStockLevel.SelectedIndex;
-            Filter();
+
+            List<Product> query2 = db.Products.ToList();
+
+            switch (stock)
+            {
+                case StockLevel.Low:
+                    query2 = query2.Where(p => p.UnitsInStock <= 50).ToList();
+                    break;
+
+                case StockLevel.Normal:
+                    query2 = query2.Where(p => p.UnitsInStock > 50 && p.UnitsInStock <= 100).ToList();
+                    break;
+
+                case StockLevel.Overstocked:
+                    query2 = query2.Where(p => p.UnitsInStock > 100).ToList();
+                    break;
+
+                default:
+                    break;
+            }
+
+            LstBxProducts.ItemsSource = null;
+            LstBxProducts.ItemsSource = query2.Select(p => p.ProductName);
         }
 
         private void LstBxSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            List<Product> query2 = db.Products.ToList();
+
+            if (LstBxSuppliers.SelectedValue != null)
+            {
+                query2 = query2.Where(p => p.Supplier.CompanyName == LstBxSuppliers.SelectedValue as string).ToList();
+            }
+            LstBxProducts.ItemsSource = null;
+            LstBxProducts.ItemsSource = query2.Select(p => p.ProductName);
         }
 
         private void LstBxCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+             
+            List<Product> query2 = db.Products.ToList();
+
+            if (LstBxCountry.SelectedValue != null)
+                query2 = query2.Where(p => p.Supplier.Country == LstBxCountry.SelectedValue as string).ToList();
+            LstBxProducts.ItemsSource = null;
+            LstBxProducts.ItemsSource = query2.Select(p => p.ProductName);
         }
 
         private void Filter()
         {
-            var query = db.Products.ToList();
-            List<Product> query2;
+
+
+            List<Product> query2 = db.Products.ToList();
             switch (stock)
             {
                 case StockLevel.Low:
-                    query2 = query.Where(p => p.UnitsInStock <= 50).ToList();
+                    query2 = query2.Where(p => p.UnitsInStock <= 50).ToList();
                     break;
 
                 case StockLevel.Normal:
-                    query2 = query.Where(p => p.UnitsInStock > 50 && p.UnitsInStock <= 100).ToList();
+                    query2 = query2.Where(p => p.UnitsInStock > 50 && p.UnitsInStock <= 100).ToList();
                     break;
 
                 case StockLevel.Overstocked:
-                    query2 = query.Where(p => p.UnitsInStock > 100).ToList();
+                    query2 = query2.Where(p => p.UnitsInStock > 100).ToList();
                     break;
 
                 default:
-                    query2 = query;
                     break;
             }
 

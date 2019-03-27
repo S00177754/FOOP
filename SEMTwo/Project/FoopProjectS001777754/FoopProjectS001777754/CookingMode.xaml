@@ -21,19 +21,26 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Name="StkPnlIngredients" Background="DarkCyan" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="10" Orientation="Vertical">
-            <TextBlock Name="TxtBKIngredients" Foreground="White" Text="Ingredients" TextAlignment="Center" Margin="5" FontSize="20"/>
-            <ListBox Name="LstBxIngredients" Background="Cyan" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="10" Height="475"/>
-        </StackPanel>
+        <Border Name="BrdrIngredients" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="5" CornerRadius="5">
+            
+        </Border>
 
-        <StackPanel Name="StkPnlCookingMethod" Background="DarkCyan" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="10" Orientation="Vertical">
-            <TextBlock Name="TxtBKCookingMethod" Foreground="White" Text="Active Recipes" TextAlignment="Center" Margin="5" FontSize="20"/>
-            <TextBlock Name="TxtBKCookingMethodText" Background="Cyan" Margin="10" Height="475"/>
-        </StackPanel>
+        <Border Name="BrdrCookingMethod" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="5" CornerRadius="5">
 
-        <StackPanel Name="StkPnlActiveRecipes" Background="DarkCyan" Grid.Column="2" Grid.Row="2" Margin="10" Orientation="Vertical">
-            <TextBlock Name="TxtBKActiveRecipes" Foreground="White" Text="Active Recipes" TextAlignment="Center" Margin="5" FontSize="20"/>
-            <ListBox Name="LstBxActiveRecipes" Background="Cyan" Margin="10" Height="260"/>
-        </StackPanel>
+        </Border>
+
+        <Border Name="BrdrTimer" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" Grid.Column="2" Grid.Row="0"  Margin="5" CornerRadius="5"> 
+
+        </Border>
+
+        <Border Name="BrdrConverter" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" Grid.Column="2" Grid.Row="1"  Margin="5" CornerRadius="5">
+
+        </Border>
+
+        <Border Name="BrdrActiveRecipes" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" Grid.Column="2" Grid.Row="2"  Margin="5" CornerRadius="5">
+
+        </Border>
+
+
     </Grid>
 </Page>

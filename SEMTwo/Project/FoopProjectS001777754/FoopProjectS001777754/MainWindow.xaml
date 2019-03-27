@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoopProjectS001777754"
         mc:Ignorable="d"
-        Title="Let's Cook!" Height="720" Width="1080" Background="White" Icon="Images/ChefsHat.ico"  >
+        Title="Let's Cook!" Height="720" Width="1080" Background="White" Icon="Images/ChefsHat.ico" 
+        ResizeMode="NoResize"
+        >
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

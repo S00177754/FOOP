@@ -131,5 +131,62 @@ namespace LabSix
             db.SaveChanges();
             ShowProducts(DgCustomersEx6);
         }
+
+        private void BtnQueryEx7_Click(object sender, RoutedEventArgs e)
+        {
+            if ((db.Products.Where(p => p.ProductName.StartsWith("Kick"))
+                            .Select(p => p)).FirstOrDefault() == null)
+            {
+                db.Products.Add(
+                new Product()
+                {
+                    ProductName = "Kickapoo Jungle Joy Juice",
+                    UnitPrice = 12.49m,
+                    CategoryID = 1
+                }
+                );
+                db.SaveChanges();
+            }
+
+            var products = db.Products.Where(p => p.ProductName.StartsWith("Kick")).Select(p => p);
+
+            foreach (var item in products)
+            {
+                item.UnitPrice = 100m;
+            }
+
+            db.SaveChanges();
+            ShowProducts(DgCustomersEx7);
+        }
+
+        private void BtnQueryEx8_Click(object sender, RoutedEventArgs e)
+        {
+            if ((db.Products.Where(p => p.ProductName.StartsWith("Kick"))
+                            .Select(p => p)).FirstOrDefault() == null)
+            {
+                db.Products.Add(
+                new Product()
+                {
+                    ProductName = "Kickapoo Jungle Joy Juice",
+                    UnitPrice = 12.49m,
+                    CategoryID = 1
+                }
+                );
+                db.SaveChanges();
+            }
+
+            var products = db.Products.Where(p => p.ProductName.StartsWith("Kick")).Select(p => p);
+
+            db.Products.RemoveRange(products);
+
+            db.SaveChanges();
+            ShowProducts(DgCustomersEx8);
+        }
+
+        private void BtnQueryEx9_Click(object sender, RoutedEventArgs e)
+        {
+            var query = db.Customers_By_City("London");
+            DgCustomersEx9.ItemsSource = query.ToList();
+        }
     }
 }

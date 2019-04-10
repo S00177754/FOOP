@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Border Name="BrdrShoppingList" BorderBrush="Red" BorderThickness="5" Margin="10,10,9.6,10.2" Background="AntiqueWhite" Grid.RowSpan="3" />
         <TextBlock Name="TxtBkShoppingList" Text="Shopping List" TextAlignment="Center" FontSize="20" Foreground="Black" FontStyle="Italic" Margin="10" Grid.Row="0" VerticalAlignment="Bottom"/>
-        <ListBox Name="LstBxShoppingList" Grid.Row="1" Margin="25,10" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4"/>
+        <ListBox Name="LstBxShoppingList" Grid.Row="1" Margin="25,10" Background="AntiqueWhite" BorderBrush="Red" BorderThickness="4" SelectionChanged="LstBxShoppingList_SelectionChanged" SourceUpdated="LstBxShoppingList_SourceUpdated"/>
         <StackPanel Name="StkPnlListButtons" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
             <Button Name="BtnEditList" Content="Edit List" Margin="20,0" Width="200" FontSize="18"/>
             <Button Name="BtnExportList" Content="Export List" Margin="20,0" Width="200" FontSize="18"/>

@@ -20,9 +20,46 @@ namespace FoopProjectS001777754
     /// </summary>
     public partial class ShoppingList : Page
     {
+        public static List<Ingredient> ShoppingIngredientList = new List<Ingredient>();
+
         public ShoppingList()
         {
             InitializeComponent();
+            UpdateList();
+        }
+
+        private void LstBxShoppingList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void LstBxShoppingList_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            UpdateList();
+        }
+
+        public void UpdateList()
+        {
+            var test = ShoppingIngredientList.Select(o => o.Name);
+            LstBxShoppingList.ItemsSource = test.GroupBy(t => t).ToList();
+        }
+
+    }
+
+    class ShoppingItem
+    {
+        public string Name;
+        public int Count;
+
+        public ShoppingItem(string name,int count)
+        {
+            Name = name;
+            Count = count;
+        }
+
+        public override string ToString()
+        {
+            return string.Format($"{Name} Amount:{Count}");
         }
     }
 }

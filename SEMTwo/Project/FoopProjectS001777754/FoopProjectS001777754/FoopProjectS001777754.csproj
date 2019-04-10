@@ -58,6 +58,9 @@
     <Compile Include="CookingMode.xaml.cs">
       <DependentUpon>CookingMode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddRecipe.xaml.cs">
+      <DependentUpon>AddRecipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MealPlanner.xaml.cs">
       <DependentUpon>MealPlanner.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,10 @@
       <DependentUpon>ShoppingList.xaml</DependentUpon>
     </Compile>
     <Page Include="CookingMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +128,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CheckerPattern.png" />

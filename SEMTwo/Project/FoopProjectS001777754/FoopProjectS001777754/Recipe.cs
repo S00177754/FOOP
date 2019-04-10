@@ -15,22 +15,39 @@ namespace FoopProjectS001777754
         public TimeSpan PrepTime { get; private set; }
         public TimeSpan TotalTime { get { return CookingTime + PrepTime; } }
         public string MethodSteps { get; set; }
+        public List<Ingredient> Ingredients { get; private set; }
         
 
         //Constructor
-        public Recipe(string name,TimeSpan cookingTime, TimeSpan prepTime,string method)
+        public Recipe(string name,TimeSpan cookingTime, TimeSpan prepTime,string method,string filePath)
         {
             Name = name;
             CookingTime = cookingTime;
             PrepTime = prepTime;
             MethodSteps = method;
+            ImageFilePath = filePath;
+        }
+        public Recipe(string name, TimeSpan cookingTime, TimeSpan prepTime, string method,string filePath, List<Ingredient> ingredients)
+        {
+            Name = name;
+            CookingTime = cookingTime;
+            PrepTime = prepTime;
+            MethodSteps = method;
+            ImageFilePath = filePath;
+            Ingredients = ingredients;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
+
+    public enum Measurement { Cups,Kilograms,Grams,Litres, Millilitres, Teaspoons,Tablespoons,Gallon,Quarts,Ounces,Pint,Pound,FluidOunces,Units}
 
     public class Ingredient
     {
         //Enum
-        public enum Measurement { Cups,Kilograms,Grams,Litres, Millilitres, Teaspoons,Tablespoons,Gallon,Quarts,Ounces,Pint,Pound,FluidOunces,Units}
 
         //Variable
         public double Amount { get; set; }
@@ -45,6 +62,19 @@ namespace FoopProjectS001777754
             Type = type;
             Name = IngredientName;
             AddMe = addMe;
+        }
+        public Ingredient(double amount, Measurement type, string IngredientName)
+        {
+            Amount = amount;
+            Type = type;
+            Name = IngredientName;
+
+        }
+
+        public override string ToString()
+        {
+            return string.Format($"{Name} ");
+            //return "testing";
         }
     }
 }
